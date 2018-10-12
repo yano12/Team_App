@@ -1,28 +1,28 @@
 require 'test_helper'
 
-class TeamsSignupTest < ActionDispatch::IntegrationTest
+class PlayersSignupTest < ActionDispatch::IntegrationTest
   
   test "invalid signup information" do
-    get new_team_path
+    get signup_path
     assert_no_difference 'Team.count' do
-      post teams_path, params: { team: { name:  "",
+      post players_path, params: { player: { name:  "",
+                                         email: "user@invalid",
                                          password:              "foo",
                                          password_confirmation: "bar" } }
     end
-    assert_template 'teams/new'
-    assert_select 'div#error_explanation'
-    assert_select 'div.alert-danger'
+    assert_template 'players/new'
   end
   
   test "valid signup information" do
-    get new_team_path
-    assert_difference 'Team.count', 1 do
-      post teams_path, params: { team: { name:  "Example Team",
+    get signup_path
+    assert_difference 'Player.count', 1 do
+      post signup_path, params: { player: { name:  "Example Player",
+                                         email: "player@example.com",
                                          password:              "password",
                                          password_confirmation: "password" } }
     end
     follow_redirect!
-    assert_template 'players/new'
+    assert_template 'players/show'
     assert_not flash.empty?
   end
 end

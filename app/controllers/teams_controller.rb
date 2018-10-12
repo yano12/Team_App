@@ -2,6 +2,7 @@ class TeamsController < ApplicationController
   
   def show
     @team = Team.find(params[:id])
+    @players = @team.players.all
   end
   
   def new
@@ -14,7 +15,7 @@ class TeamsController < ApplicationController
       msg = "チームを作成しました。, 続いてプレイヤーアカウントを作成してください"
       msg = msg.gsub(",","<br>")
       flash[:success] = msg.html_safe
-      redirect_to '#'
+      redirect_to signup_path
     else
       render 'new'
     end

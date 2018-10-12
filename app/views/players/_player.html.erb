@@ -1,0 +1,5 @@
+<li id="player-<%= player.id %>">
+  <%= link_to gravatar_for(player.team, size: 50), player.team %>
+  <span class="team"><%= link_to player.team.name, player.team %></span>
+  <span class="content"><%= player.content %></span>
+</li>

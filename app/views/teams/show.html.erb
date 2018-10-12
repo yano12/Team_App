@@ -8,4 +8,12 @@
       </h1>
     </section>
   </aside>
+  <div class="col-md-8">
+    <% if @team.players.any? %>
+      <h3>メンバー (<%= @team.players.count %>)</h3>
+      <ol class="players">
+        <%= render @players %>
+      </ol>
+    <% end %>
+  </div>
 </div>
