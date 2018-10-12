@@ -39,7 +39,8 @@ class TeamTest < ActiveSupport::TestCase
   
   test "associated players should be destroyed" do
     @team.save
-    @team.players.create!(name: "kobe")
+    @team.players.create!(name: "kobe", email: "kobe@example.com",
+                        password: "password", password_confirmation: "password")
     assert_difference 'Player.count', -1 do
       @team.destroy
     end

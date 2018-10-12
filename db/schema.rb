@@ -10,13 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181012102040) do
+ActiveRecord::Schema.define(version: 20181012121706) do
 
   create_table "players", force: :cascade do |t|
     t.string "name"
     t.integer "team_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "email"
+    t.string "password_digest"
+    t.index ["email"], name: "index_players_on_email", unique: true
     t.index ["team_id", "created_at"], name: "index_players_on_team_id_and_created_at"
     t.index ["team_id"], name: "index_players_on_team_id"
   end
