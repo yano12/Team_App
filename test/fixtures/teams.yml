@@ -1,0 +1,25 @@
+suns:
+  name: Example1
+  password_digest: <%= Team.digest('password') %>
+
+heat:
+  name: Example2
+  password_digest: <%= Team.digest('password') %>
+
+spurs:
+  name: Example3
+  password_digest: <%= Team.digest('password') %>
+
+lakers:
+  name: Example4
+  password_digest: <%= Team.digest('password') %>
+
+celtics:
+  name: Example5
+  password_digest: <%= Team.digest('password') %>
+
+<% 30.times do |n| %>
+team_<%= n %>:
+  name:  <%= "Team #{n}" %>
+  password_digest: <%= Team.digest('password') %>
+<% end %>

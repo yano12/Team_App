@@ -36,4 +36,12 @@ class TeamTest < ActiveSupport::TestCase
     @team.password = @team.password_confirmation = "a" * 5
     assert_not @team.valid?
   end
+  
+  test "associated players should be destroyed" do
+    @team.save
+    @team.players.create!(name: "kobe")
+    assert_difference 'Player.count', -1 do
+      @team.destroy
+    end
+  end
 end
