@@ -1,6 +1,13 @@
-<h1>Team App</h1>
-<p>
-  This is the home page for the
-  <a href="https://railstutorial.jp/">Ruby on Rails Tutorial</a>
-  sample application.
-</p>
+<div class="center jumbotron">
+  <h1>Welcome to the Team App</h1>
+
+  <h2>
+    This is the home page for the Team App.
+  </h2>
+  
+  <ul class="signup-ul">
+    <li class="signup-list"><%= link_to "チーム登録", new_team_path, class: "btn btn-lg btn-primary" %></li>
+    <li class="signup-list"><%= link_to "プレイヤー登録", '#', class: "btn btn-lg btn-primary" %></li>
+  </ul>
+  
+</div>
