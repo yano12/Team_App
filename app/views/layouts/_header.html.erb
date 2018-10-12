@@ -4,7 +4,22 @@
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Home",   root_path %></li>
-        <li><%= link_to "Log in", '#' %></li>
+        <% if logged_in? %>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              Account <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "マイページ", edit_player_path %></li>
+              <li><%= link_to "マイチーム", team_path(@current_team) %></li>
+              <li><%= link_to "スケジュール", '#' %></li>
+              <li><%= link_to "タイムライン", '#' %></li>
+            </ul>
+          </li>
+          <li><%= link_to "ログアウト", logout_path, method: :delete %></li>
+        <% else %>
+          <li><%= link_to "ログイン", login_path %></li>
+        <% end %>
       </ul>
     </nav>
   </div>

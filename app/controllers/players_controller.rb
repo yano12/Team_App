@@ -9,8 +9,10 @@ class PlayersController < ApplicationController
   end
   
   def create
-    @player = current_team.players.build(player_params)
+    @current_team = Team.find_by(id: params[:team_id])
+    @player = @current_team.players.build(player_params)
     if @player.save
+      log_in @player
       flash[:success] = "ユーザーアカウントを作成しました"
       redirect_to @player
     else
