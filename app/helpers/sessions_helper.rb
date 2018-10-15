@@ -6,16 +6,21 @@ module SessionsHelper
   end
   
   # ユーザーのセッションを永続的にする
-  def remember(user)
-    user.remember
-    cookies.permanent.signed[:user_id] = user.id
-    cookies.permanent[:remember_token] = user.remember_token
+  def remember(player)
+    player.remember
+    cookies.permanent.signed[:player_id] = player.id
+    cookies.permanent[:remember_token] = player.remember_token
+  end
+  
+  # 渡されたユーザーがログイン済みユーザーであればtrueを返す
+  def current_player?(player)
+    player == current_player
   end
   
   # 現在ログイン中のユーザーを返す (いる場合)
   def current_player
     if (player_id = session[:player_id])
-      @current_palyer ||= Player.find_by(id: player_id)
+      @current_player ||= Player.find_by(id: player_id)
     elsif (player_id = cookies.signed[:player_id])
       player = Player.find_by(id: player_id)
       if player && player.authenticated?(cookies[:remember_token])
@@ -42,5 +47,16 @@ module SessionsHelper
     forget(current_player)
     session.delete(:player_id)
     @current_player = nil
+  end
+  
+  # 記憶したURL (もしくはデフォルト値) にリダイレクト
+  def redirect_back_or(default)
+    redirect_to(session[:forwarding_url] || default)
+    session.delete(:forwarding_url)
+  end
+
+  # アクセスしようとしたURLを覚えておく
+  def store_location
+    session[:forwarding_url] = request.original_url if request.get?
   end
 end

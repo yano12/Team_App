@@ -28,7 +28,7 @@ class PlayersLoginTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", login_path, count: 0
     assert_select "a[href=?]", logout_path
     assert_select "a[href=?]", edit_player_path
-    # assert_select "a[href=?]", team_path(@team)
+    assert_select "a[href=?]", players_path
     delete logout_path
     assert_not is_logged_in?
     assert_redirected_to root_url
@@ -38,7 +38,7 @@ class PlayersLoginTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", login_path
     assert_select "a[href=?]", logout_path,      count: 0
     assert_select "a[href=?]", edit_player_path, count: 0
-    # assert_select "a[href=?]", team_path(@team), count: 0
+    assert_select "a[href=?]", players_path, count: 0
   end
   
   test "login with remembering" do

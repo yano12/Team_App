@@ -1,6 +1,6 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
-    <%= link_to "sample app", root_path, id: "logo" %>
+    <%= link_to "Team app", root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Home",   root_path %></li>
@@ -10,8 +10,8 @@
               Account <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
-              <li><%= link_to "マイページ", edit_player_path %></li>
-              <li><%= link_to "マイチーム", '#' %></li>
+              <li><%= link_to "マイページ", edit_player_path(current_player) %></li>
+              <li><%= link_to "マイチーム", players_path %></li>
               <li><%= link_to "スケジュール", '#' %></li>
               <li><%= link_to "タイムライン", '#' %></li>
             </ul>

@@ -1,5 +1,8 @@
-<li id="player-<%= player.id %>">
-  <%= link_to gravatar_for(player.team, size: 50), player.team %>
-  <span class="team"><%= link_to player.team.name, player.team %></span>
-  <span class="content"><%= player.content %></span>
+<li>
+  <%= gravatar_for player, size: 50 %>
+  <%= link_to player.name, player %>
+  <% if current_player.admin? && !current_player?(player) %>
+    | <%= link_to "delete", player, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+  <% end %>
 </li>
