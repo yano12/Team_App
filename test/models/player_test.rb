@@ -81,13 +81,7 @@ class PlayerTest < ActiveSupport::TestCase
     assert_not @player.valid?
   end
   
-  #test "password should be present (nonblank)" do
-  #  @player.password = @player.password_confirmation = " " * 6
-  #  assert_not @player.valid?
-  #end
-
-  #test "password should have a minimum length" do
-  #  @player.password = @player.password_confirmation = "a" * 5
-  #  assert_not @player.valid?
-  #end
+  test "authenticated? should return false for a player with nil digest" do
+    assert_not @player.authenticated?('')
+  end
 end
