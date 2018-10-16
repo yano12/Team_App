@@ -8,7 +8,6 @@ class SessionsController < ApplicationController
     if @player && @player.authenticate(params[:session][:password])
       log_in @player
       params[:session][:remember_me] == '1' ? remember(@player) : forget(@player)
-      remember @player
       redirect_back_or @player
     else
       flash.now[:danger] = "入力内容が間違っています。"

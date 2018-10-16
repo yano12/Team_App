@@ -1,7 +1,7 @@
 class Player < ApplicationRecord
   belongs_to :team
   attr_accessor :remember_token
-  before_save { email.downcase! }
+  before_save   :downcase_email
   validates :team_id, presence: true
   validates :name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
@@ -39,4 +39,11 @@ class Player < ApplicationRecord
   def forget
     update_attribute(:remember_digest, nil)
   end
+  
+  private
+
+    # メールアドレスをすべて小文字にする
+    def downcase_email
+      self.email = email.downcase
+    end
 end

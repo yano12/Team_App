@@ -3,10 +3,6 @@ class PlayersController < ApplicationController
   before_action :correct_player,   only: [:edit, :update]
   before_action :admin_player,     only: :destroy
   
-  def index 
-    @players = Player.paginate(page: params[:page])
-  end
-  
   def show
     @player = Player.find(params[:id])
   end
@@ -16,8 +12,8 @@ class PlayersController < ApplicationController
   end
   
   def create
-    @current_team = Team.find_by(id: params[:team_id])
-    @player = @current_team.players.build(player_params)
+    @player_team = Team.find_by(id: params[:team_id])
+    @player = @player_team.players.build(player_params)
     if @player.save
       log_in @player
       flash[:success] = "ユーザーアカウントを作成しました"
@@ -37,7 +33,7 @@ class PlayersController < ApplicationController
       flash[:success] = "プロフィールを更新しました"
       redirect_to @player
     else
-      render 'edit'
+      render 'players/edit'
     end
   end
   

@@ -3,6 +3,7 @@ module SessionsHelper
   # 渡されたユーザーでログインする
   def log_in(player)
     session[:player_id] = player.id
+    session[:team_id] = player.team_id
   end
   
   # ユーザーのセッションを永続的にする
@@ -27,6 +28,13 @@ module SessionsHelper
         log_in player
         @current_player = player
       end
+    end
+  end
+  
+  # 現在ログイン中のユーザーのチームを返す (いる場合)
+  def current_team
+    if session[:team_id]
+      @current_team ||= Team.find.by(id: session[:team_id])
     end
   end
   

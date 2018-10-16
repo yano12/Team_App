@@ -7,11 +7,6 @@ class PlayersControllerTest < ActionDispatch::IntegrationTest
     @other_player = players(:archer)
   end
   
-  test "should redirect index when not logged in" do
-    get players_path
-    assert_redirected_to login_url
-  end
-  
   test "should get new" do 
     get signup_path
     assert_response :success
