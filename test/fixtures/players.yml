@@ -2,31 +2,31 @@ michael:
   name: Michael Example
   email: michael@example.com
   password_digest: <%= Player.digest('password') %>
-  team_id: 1
+  team: suns
   admin: true
   
 archer:
   name: Sterling Archer
   email: duchess@example.gov
   password_digest: <%= Player.digest('password') %>
-  team_id: 2
+  team: suns
 
 lana:
   name: Lana Kane
   email: hands@example.gov
   password_digest: <%= Player.digest('password') %>
-  team_id: 3
+  team: suns
 
 malory:
   name: Malory Archer
   email: boss@example.gov
   password_digest: <%= Player.digest('password') %>
-  team_id: 4
+  team: suns
 
-<% 30.times do |n| %>
+<% 99.times do |n| %>
 player_<%= n %>:
   name:  <%= "Player #{n}" %>
   email: <%= "player-#{n}@example.com" %>
   password_digest: <%= Player.digest('password') %>
-  team_id: 1
+  team: suns
 <% end %>

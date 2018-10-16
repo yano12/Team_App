@@ -14,6 +14,7 @@ class TeamsController < ApplicationController
     if @team.save
       msg = "チームを作成しました。, 続いてプレイヤーアカウントを作成してください"
       msg = msg.gsub(",","<br>")
+      team_log_in @team
       flash[:success] = msg.html_safe
       redirect_to signup_path
     else

@@ -12,8 +12,7 @@ class PlayersController < ApplicationController
   end
   
   def create
-    @player_team = Team.find_by(id: params[:team_id])
-    @player = @player_team.players.build(player_params)
+    @player = current_team.players.build(player_params)
     if @player.save
       log_in @player
       flash[:success] = "ユーザーアカウントを作成しました"
@@ -33,7 +32,7 @@ class PlayersController < ApplicationController
       flash[:success] = "プロフィールを更新しました"
       redirect_to @player
     else
-      render 'players/edit'
+      render 'edit'
     end
   end
   
@@ -51,15 +50,6 @@ class PlayersController < ApplicationController
     end
     
     # beforeアクション
-
-    # ログイン済みユーザーかどうか確認
-    def logged_in_player
-      unless logged_in?
-        store_location
-        flash[:danger] = "ログインしてください"
-        redirect_to login_url
-      end
-    end
     
     # 正しいユーザーかどうか確認
     def correct_player

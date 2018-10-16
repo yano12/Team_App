@@ -18,7 +18,7 @@ team.players.create!(name:  "Example Player",
                      password_confirmation: "foobar",
                      admin: true)
                      
-29.times do |n|
+99.times do |n|
   player  = Faker::Name.name
   email = "example-#{n+1}@railstutorial.org"
   password = "password"

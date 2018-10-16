@@ -1,4 +1,4 @@
-<li>
-  <%= gravatar_for player, size: 50 %>
-  <%= link_to player.name, player %>
+<li id="player-<%= player.id %>">
+  <%= link_to gravatar_for(player.team, size: 50), player.team %>
+  <span class="name"><%= link_to player.name, player %></span>
 </li>
