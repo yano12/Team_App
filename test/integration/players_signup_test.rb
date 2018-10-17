@@ -4,6 +4,7 @@ class PlayersSignupTest < ActionDispatch::IntegrationTest
   
   def setup
     @team = teams(:suns)
+    ActionMailer::Base.deliveries.clear
   end
   
   test "invalid team login information" do 
@@ -32,7 +33,7 @@ class PlayersSignupTest < ActionDispatch::IntegrationTest
     assert_template 'players/new'
   end
   
-  test "valid signup information" do
+  test "valid signup information with account activation" do
     get team_login_path
     post team_login_path, params: { team_session: { name: @team.name,
                                                     password: 'password' } }
@@ -45,6 +46,21 @@ class PlayersSignupTest < ActionDispatch::IntegrationTest
                                          password:              "password",
                                          password_confirmation: "password" } }
     end
+    assert_equal 1, ActionMailer::Base.deliveries.size
+    player = assigns(:player)
+    assert_not player.activated?
+    # 有効化していない状態でログインしてみる
+    log_in_as(player)
+    assert_not is_logged_in?
+    # 有効化トークンが不正な場合
+    get edit_account_activation_path("invalid token", email: player.email)
+    assert_not is_logged_in?
+    # トークンは正しいがメールアドレスが無効な場合
+    get edit_account_activation_path(player.activation_token, email: 'wrong')
+    assert_not is_logged_in?
+    # 有効化トークンが正しい場合
+    get edit_account_activation_path(player.activation_token, email: player.email)
+    assert player.reload.activated?
     follow_redirect!
     assert_template 'players/show'
     assert_not flash.empty?

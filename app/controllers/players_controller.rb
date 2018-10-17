@@ -5,6 +5,7 @@ class PlayersController < ApplicationController
   
   def show
     @player = Player.find(params[:id])
+    redirect_to root_url and return unless @player.activated?
   end
   
   def new
@@ -14,9 +15,9 @@ class PlayersController < ApplicationController
   def create
     @player = current_team.players.build(player_params)
     if @player.save
-      log_in @player
-      flash[:success] = "ユーザーアカウントを作成しました"
-      redirect_to @player
+      @player.send_activation_email
+      flash[:info] = "アカウント有効化メールを送信しました。"
+      redirect_to root_url
     else
       render 'new'
     end

@@ -2,7 +2,7 @@ class TeamsController < ApplicationController
   
   def show
     @team = Team.find(params[:id])
-    @players = @team.players.paginate(page: params[:page])
+    @players = @team.players.where(activated: true).paginate(page: params[:page])
   end
   
   def new

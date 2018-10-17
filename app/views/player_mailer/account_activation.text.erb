@@ -1,0 +1,5 @@
+Hi <%= @player.name %>,
+
+Welcome to the Team App! Click on the link below to activate your account:
+
+<%= edit_account_activation_url(@player.activation_token, email: @player.email) %>
