@@ -237,7 +237,7 @@ input {
   margin-left: 0;
 }
 
-/* players */
+/* players and teams */
 
 .players {
   list-style: none;
@@ -256,9 +256,9 @@ input {
   }
 }
 
-/* Players index */
+/* Players and Teams index */
 
-.players {
+.players, .teams {
   list-style: none;
   margin: 0;
   li {

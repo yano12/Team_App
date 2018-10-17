@@ -22,6 +22,10 @@ class TeamsController < ApplicationController
     end
   end
   
+  def index
+    @teams = Team.paginate(page: params[:page]).search(params[:search])
+  end
+  
   private
   
     def team_params
