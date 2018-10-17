@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   get    '/team/login',   to: 'team_sessions#new'
   post   '/team/login',   to: 'team_sessions#create'
   # delete '/team/logout',  to: 'team_sessions#destroy'
-  resources :account_activations, only: [:edit]
   resources :teams
   resources :players
+  resources :account_activations, only: [:edit]
+  resources :password_resets,     only: [:new, :create, :edit, :update]
 end

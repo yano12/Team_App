@@ -15,9 +15,8 @@ class PlayerMailer < ApplicationMailer
   #
   #   en.player_mailer.password_reset.subject
   #
-  def password_reset
-    @greeting = "Hi"
-
-    mail to: "to@example.org"
+  def password_reset(player)
+    @player = player
+    mail to: player.email, subject: "Password reset"
   end
 end
