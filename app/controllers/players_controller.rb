@@ -46,11 +46,19 @@ class PlayersController < ApplicationController
   private
 
     def player_params
-      params.require(:player).permit(:name, :email, :password,
+      params.require(:player).permit(:team_manager, :name, :email, :password,
                                    :password_confirmation)
     end
     
     # beforeアクション
+    
+    # ログイン済みプレイヤーかどうか確認
+    def logged_in_player
+      unless logged_in?
+        flash[:danger] = "Please log in."
+        redirect_to login_url
+      end
+    end
     
     # 正しいユーザーかどうか確認
     def correct_player

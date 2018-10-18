@@ -41,7 +41,8 @@ class PlayersSignupTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_template 'players/new'
     assert_difference 'Player.count', 1 do
-      post signup_path, params: { player: { name:  "Example Player",
+      post signup_path, params: { player: { team_manager: true,
+                                         name:  "Example Player",
                                          email: "player@example.com",
                                          password:              "password",
                                          password_confirmation: "password" } }

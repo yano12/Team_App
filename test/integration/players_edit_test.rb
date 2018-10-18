@@ -10,7 +10,8 @@ class PlayersEditTest < ActionDispatch::IntegrationTest
     log_in_as(@player)
     get edit_player_path(@player)
     assert_template 'players/edit'
-    patch player_path(@player), params: { player: { name:  "",
+    patch player_path(@player), params: { player: { team_manager: false,
+                                              name:  "",
                                               email: "foo@invalid",
                                               password:              "foo",
                                               password_confirmation: "bar" } }
@@ -19,12 +20,13 @@ class PlayersEditTest < ActionDispatch::IntegrationTest
   end
   
   test "successful edit with friendly forwarding" do
-    get edit_player_path(@player)
     log_in_as(@player)
-    assert_redirected_to edit_player_url(@player)
+    get edit_player_path(@player)
+    assert_template 'players/edit'
     name  = "Foo Bar"
     email = "foo@bar.com"
-    patch player_path(@player), params: { player: { name:  name,
+    patch player_path(@player), params: { player: { team_manager: false,
+                                              name:  name,
                                               email: email,
                                               password:              "",
                                               password_confirmation: "" } }
@@ -33,5 +35,6 @@ class PlayersEditTest < ActionDispatch::IntegrationTest
     @player.reload
     assert_equal name,  @player.name
     assert_equal email, @player.email
+    assert_not @player.team_manager?
   end
 end

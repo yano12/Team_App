@@ -4,6 +4,7 @@ michael:
   password_digest: <%= Player.digest('password') %>
   team: suns
   admin: true
+  team_manager: true
   activated: true
   activated_at: <%= Time.zone.now %>
   
@@ -12,6 +13,7 @@ non_activated:
   email: non_activated@example.gov
   password_digest: <%= Player.digest('password') %>
   team: suns
+  team_manager: false
   activated: false
   activated_at: <%= Time.zone.now %>
   
@@ -20,6 +22,7 @@ archer:
   email: duchess@example.gov
   password_digest: <%= Player.digest('password') %>
   team: suns
+  team_manager: false
   activated: true
   activated_at: <%= Time.zone.now %>
 
@@ -28,6 +31,7 @@ lana:
   email: hands@example.gov
   password_digest: <%= Player.digest('password') %>
   team: suns
+  team_manager: false
   activated: true
   activated_at: <%= Time.zone.now %>
 
@@ -36,6 +40,7 @@ malory:
   email: boss@example.gov
   password_digest: <%= Player.digest('password') %>
   team: suns
+  team_manager: false
   activated: true
   activated_at: <%= Time.zone.now %>
 
@@ -45,6 +50,7 @@ player_<%= n %>:
   email: <%= "player-#{n}@example.com" %>
   password_digest: <%= Player.digest('password') %>
   team: suns
+  team_manager: false
   activated: true
   activated_at: <%= Time.zone.now %>
 <% end %>

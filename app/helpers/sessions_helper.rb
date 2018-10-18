@@ -31,6 +31,11 @@ module SessionsHelper
     end
   end
   
+  # 渡されたチームがにユーザーが所属していればtrueを返す
+  def current_team?(team)
+    team == current_team
+  end
+  
   # 現在ログイン中のユーザーのチームを返す (いる場合)
   def current_team
     if session[:team_id]

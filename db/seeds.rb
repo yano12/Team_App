@@ -17,6 +17,7 @@ team.players.create!(name:  "Example Player",
                      password:              "foobar",
                      password_confirmation: "foobar",
                      admin: true,
+                     team_manager: true,
                      activated: true,
                      activated_at: Time.zone.now)
                      
@@ -28,6 +29,7 @@ team.players.create!(name:  "Example Player",
                        email: email,
                        password:              password,
                        password_confirmation: password,
+                       team_manager: false,
                        activated: true,
                        activated_at: Time.zone.now)
 end

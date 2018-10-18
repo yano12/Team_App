@@ -5,6 +5,10 @@
       <h1>
         <%= gravatar_for @team %>
         <%= @team.name %>
+        <% if current_team?(@team) %>
+          | <%= link_to "チームを削除", @team, method: :delete,
+                                data: { confirm: "You sure?" } %>
+        <% end %>
       </h1>
     </section>
   </aside>
