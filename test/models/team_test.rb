@@ -45,4 +45,39 @@ class TeamTest < ActiveSupport::TestCase
       @team.destroy
     end
   end
+  
+  test "should follow and unfollow a team" do
+    suns = teams(:suns)
+    heat  = teams(:heat)
+    assert_not suns.following?(heat)
+    suns.follow(heat)
+    assert suns.following?(heat)
+    assert heat.followers.include?(suns)
+    suns.unfollow(heat)
+    assert_not suns.following?(heat)
+  end
+  
+  test "feed should have the right posts" do
+    suns    = teams(:suns)
+    heat    = teams(:heat)
+    spurs   = teams(:spurs)
+    # フォローしているチームの投稿を確認
+    spurs.players.each do |following_team_player|
+      following_team_player.microposts.each do |post_following|
+        assert suns.feed.include?(post_following)
+      end
+    end
+    # 自チームの投稿を確認
+    suns.players.each do |player_self|
+      player_self.microposts.each do |post_self|
+        assert suns.feed.include?(post_self)
+      end
+    end
+    # フォローしていないチームの投稿を確認
+    heat.players.each do |unfollowed_team_player|
+      unfollowed_team_player.microposts.each do |post_unfollowed|
+        assert_not suns.feed.include?(post_unfollowed)
+      end
+    end
+  end
 end

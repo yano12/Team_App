@@ -5,14 +5,20 @@
       <h1>
         <%= gravatar_for @team %>
         <%= @team.name %>
-        <% if current_team?(@team) %>
+        <% if current_team?(@team) && current_player.team_manager? %>
           | <%= link_to "チームを削除", @team, method: :delete,
                                 data: { confirm: "You sure?" } %>
         <% end %>
       </h1>
     </section>
+    <section class="stats">
+      <%= render 'shared/stats' %>
+    </section>
   </aside>
   <div class="col-md-8">
+    <% if logged_in? && current_player.team_manager? %>
+      <%= render 'follow_form' %>
+    <% end %>
     <% if @team.players.any? %>
       <h3>メンバー (<%= @team.players.count %>)</h3>
       <ol class="players">

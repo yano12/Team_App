@@ -1,5 +1,5 @@
 class TeamsController < ApplicationController
-  before_action :logged_in_player,  only: :destroy
+  before_action :logged_in_player,  only: [:destroy, :following, :followers]
   before_action :manager_player,        only: :destroy
   
   def show
@@ -32,6 +32,20 @@ class TeamsController < ApplicationController
     Team.find(params[:id]).destroy
     flash[:success] = "チーム及び所属するプレイヤーを削除しました。"
     redirect_to new_team_path
+  end
+  
+  def following
+    @title = "Following"
+    @team  = Team.find(params[:id])
+    @teams = @team.following.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
+  def followers
+    @title = "Followers"
+    @team  = Team.find(params[:id])
+    @teams = @team.followers.paginate(page: params[:page])
+    render 'show_follow'
   end
   
   private

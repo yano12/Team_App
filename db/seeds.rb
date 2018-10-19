@@ -39,3 +39,11 @@ players = Player.order(:created_at).take(6)
   content = Faker::Lorem.sentence(5)
   players.each { |player| player.microposts.create!(content: content) }
 end
+
+# リレーションシップ
+teams = Team.all
+team  = teams.first
+following = teams[2..50]
+followers = teams[3..40]
+following.each { |followed| team.follow(followed) }
+followers.each { |follower| follower.follow(team) }

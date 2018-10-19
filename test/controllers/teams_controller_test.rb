@@ -5,6 +5,7 @@ class TeamsControllerTest < ActionDispatch::IntegrationTest
   def setup
     @manager     = players(:michael)
     @not_manager = players(:archer)
+    @team        = teams(:suns)
   end
   
   test "should get new" do
@@ -26,5 +27,14 @@ class TeamsControllerTest < ActionDispatch::IntegrationTest
     end
     assert_redirected_to root_url
   end
+  
+  test "should redirect following when not logged in" do
+    get following_team_path(@team)
+    assert_redirected_to login_url
+  end
 
+  test "should redirect followers when not logged in" do
+    get followers_team_path(@team)
+    assert_redirected_to login_url
+  end
 end

@@ -1,0 +1,15 @@
+one:
+  follower: suns
+  followed: spurs
+
+two:
+  follower: suns
+  followed: lakers
+
+three:
+  follower: spurs
+  followed: suns
+
+four:
+  follower: heat
+  followed: suns
