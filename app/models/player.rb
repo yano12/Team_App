@@ -1,4 +1,5 @@
 class Player < ApplicationRecord
+  has_many :microposts, dependent: :destroy
   belongs_to :team
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email
@@ -71,6 +72,13 @@ class Player < ApplicationRecord
   def password_reset_expired?
     reset_sent_at < 2.hours.ago
   end
+  
+  # 試作feedの定義
+  # 完全な実装は次章の「ユーザーをフォローする」を参照
+  def feed
+    Micropost.where("player_id = ?", id)
+  end
+
   
   private
 

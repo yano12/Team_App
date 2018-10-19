@@ -33,3 +33,9 @@ team.players.create!(name:  "Example Player",
                        activated: true,
                        activated_at: Time.zone.now)
 end
+
+players = Player.order(:created_at).take(6)
+50.times do
+  content = Faker::Lorem.sentence(5)
+  players.each { |player| player.microposts.create!(content: content) }
+end

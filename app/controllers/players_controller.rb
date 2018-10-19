@@ -5,6 +5,7 @@ class PlayersController < ApplicationController
   
   def show
     @player = Player.find(params[:id])
+    @microposts = @player.microposts.paginate(page: params[:page])
     redirect_to root_url and return unless @player.activated?
   end
   

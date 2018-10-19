@@ -1,6 +1,10 @@
 class TopPagesController < ApplicationController
   def home
-    @players = current_team.players.paginate(page: params[:page]) if logged_in?
+    if logged_in?
+      #@players = current_team.players.paginate(page: params[:page])
+      @micropost = current_player.microposts.build
+      @feed_items = current_player.feed.paginate(page: params[:page])
+    end
   end
   
   def contact

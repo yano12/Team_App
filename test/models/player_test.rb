@@ -84,4 +84,12 @@ class PlayerTest < ActiveSupport::TestCase
   test "authenticated? should return false for a player with nil digest" do
     assert_not @player.authenticated?(:remember, '')
   end
+  
+  test "associated microposts should be destroyed" do
+    @player.save
+    @player.microposts.create!(content: "Lorem ipsum")
+    assert_difference 'Micropost.count', -1 do
+      @player.destroy
+    end
+  end
 end
