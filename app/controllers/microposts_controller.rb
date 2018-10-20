@@ -4,6 +4,7 @@ class MicropostsController < ApplicationController
 
   def create
     @micropost = current_player.microposts.build(micropost_params)
+    @micropost.team_id = current_player.team_id
     if @micropost.save
       flash[:success] = "投稿しました。"
       redirect_to root_url

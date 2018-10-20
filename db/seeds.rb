@@ -37,7 +37,7 @@ end
 players = Player.order(:created_at).take(6)
 50.times do
   content = Faker::Lorem.sentence(5)
-  players.each { |player| player.microposts.create!(content: content) }
+  players.each { |player| player.microposts.create!(content: content, team_id: player.team_id) }
 end
 
 # リレーションシップ

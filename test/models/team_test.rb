@@ -62,22 +62,16 @@ class TeamTest < ActiveSupport::TestCase
     heat    = teams(:heat)
     spurs   = teams(:spurs)
     # フォローしているチームの投稿を確認
-    spurs.players.each do |following_team_player|
-      following_team_player.microposts.each do |post_following|
-        assert suns.feed.include?(post_following)
-      end
+    spurs.microposts.each do |post_following|
+      assert suns.feed.include?(post_following)
     end
     # 自チームの投稿を確認
-    suns.players.each do |player_self|
-      player_self.microposts.each do |post_self|
-        assert suns.feed.include?(post_self)
-      end
+    suns.microposts.each do |post_self|
+      assert suns.feed.include?(post_self)
     end
     # フォローしていないチームの投稿を確認
-    heat.players.each do |unfollowed_team_player|
-      unfollowed_team_player.microposts.each do |post_unfollowed|
-        assert_not suns.feed.include?(post_unfollowed)
-      end
+    heat.microposts.each do |post_unfollowed|
+      assert_not suns.feed.include?(post_unfollowed)
     end
   end
 end

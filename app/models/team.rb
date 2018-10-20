@@ -1,5 +1,6 @@
 class Team < ApplicationRecord
   has_many :players, dependent: :destroy
+  has_many :microposts, dependent: :destroy
   has_many :active_relationships, class_name:  "Relationship",
                                   foreign_key: "follower_id",
                                   dependent:   :destroy
@@ -41,5 +42,13 @@ class Team < ApplicationRecord
   # 現在のユーザーがフォローしてたらtrueを返す
   def following?(other_team)
     following.include?(other_team)
+  end
+  
+  # フォローしたチームに所属しているプレイヤーの投稿を返す
+  def feed
+    following_ids = "SELECT followed_id FROM relationships
+                     WHERE follower_id = :team_id"
+    Micropost.where("team_id IN (#{following_ids})
+                     OR team_id = :team_id", team_id: id)
   end
 end

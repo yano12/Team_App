@@ -73,14 +73,6 @@ class Player < ApplicationRecord
     reset_sent_at < 2.hours.ago
   end
   
-  # フォローしたチームに所属しているプレイヤーの投稿を返す
-  def feed
-    @players = Player.where("team_id IN (?) OR team_id = ?", following_ids, id)
-    @players.each do |player|
-      Micropost.where("player_id = ?", player.id)
-    end
-  end
-  
   private
 
     # メールアドレスをすべて小文字にする

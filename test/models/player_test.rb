@@ -87,7 +87,7 @@ class PlayerTest < ActiveSupport::TestCase
   
   test "associated microposts should be destroyed" do
     @player.save
-    @player.microposts.create!(content: "Lorem ipsum")
+    @player.microposts.create!(content: "Lorem ipsum", team_id: @player.team_id)
     assert_difference 'Micropost.count', -1 do
       @player.destroy
     end

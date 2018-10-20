@@ -1,5 +1,6 @@
 class Micropost < ApplicationRecord
   belongs_to :player
+  belongs_to :team
   default_scope -> { order(created_at: :desc) }
   mount_uploader :picture, PictureUploader
   validates :player_id, presence: true
