@@ -1,6 +1,25 @@
 class MicropostsController < ApplicationController
   before_action :logged_in_player, only: [:create, :destroy]
-  before_action :correct_micropost_player,   only: :destroy
+  before_action :correct_micropost_player,   only: [:edit, :update, :destroy]
+  
+  def show
+    @micropost = Micropost.find(params[:id])
+    @comment = @micropost.comments.build
+  end
+  
+  def edit
+    @micropost = Micropost.find(params[:id])
+  end 
+  
+  def update
+    @micropost = Micropost.find(params[:id])
+    if @micropost.update_attributes(micropost_params)
+      flash[:success] = "投稿を更新しました"
+      redirect_to root_url
+    else
+      render 'edit'
+    end
+  end
 
   def create
     @micropost = current_player.microposts.build(micropost_params)

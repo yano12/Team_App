@@ -1,4 +1,5 @@
 class Player < ApplicationRecord
+  has_many :comments
   has_many :microposts, dependent: :destroy
   belongs_to :team
   attr_accessor :remember_token, :activation_token, :reset_token

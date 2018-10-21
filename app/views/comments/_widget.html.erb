@@ -1,0 +1,16 @@
+<div class="comments-widget">
+  <div class="comments-left">
+    <h2 class="comments-header">
+      コメント
+      <small id="comments-count-of-post">
+        <%= micropost.comments_count %>
+      </small>
+    </h2>
+    <div id="comment-wrap">
+      <!-- localsで変数を代入、collectionの数だけ部分テンプレートを繰り返し表示 -->
+      <%= render partial: 'comments/comment', locals: {micropost: micropost},
+            collection: micropost.comments.where(parent_id: nil).includes(:player) %>
+    </div>
+      <%= render 'comments/form', {comment: comment, micropost: micropost} %>
+  </div>
+</div>

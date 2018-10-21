@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  content: MyString
+  player: one
+  micropost: one
+  parent: one
+  replies_count: 1
+
+two:
+  content: MyString
+  player: two
+  micropost: two
+  parent: two
+  replies_count: 1

@@ -1,0 +1,22 @@
+<% if @comment.parent_id %>
+  $comment_parent = $("#comment_<%=@comment.parent_id %>")
+  $comment_form = $("#comment_<%= @comment.parent_id %> #new_comment");
+<% else %>
+  $comment_parent = $("#comment-wrap");
+  $comment_form = $("#new_comment");
+<% end %>
+<% if @comment.errors.empty? %>
+  $comment_parent.append("<%=j(render partial: 'comments/comment',
+                      locals:{micropost: @micropost, comment: @comment}) %>");
+  $comment_form[0].reset();
+  <% if @comment.parent %>
+    $comment_form.remove();
+  <% end %>
+<% else %>
+  $comment_form.before("<div class='alert alert-warning alert-dismissible' role='alert'>
+    <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+      <span aria-hidden='true'>&times;</span></button>
+      <ul><% @comment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %> </ul></div>").prev().delay(1500).slideUp();
+<% end %>

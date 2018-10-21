@@ -1,0 +1,8 @@
+$comments_count = $("#comments-count-of-post");
+<% if @comment.errors.empty? %>
+  $comments_count.html("<%= @post.comments.count %>");
+  $("#comment_<%= @comment.id %>").fadeOut(400);
+<% else %>
+  $("#comment_<%= @comment.id %>").after("<div class='request-error'>
+    <%= @comment.errors.full_messages.join('') %></div>").next().delay(1500).slideUp('fast');
+<% end %>

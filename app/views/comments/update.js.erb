@@ -1,0 +1,14 @@
+$comment_form = $("#comment_<%=@comment.id %> .new_comment");
+$comment = $("#comment_<%= @comment.id %>");
+<% if @comment.errors.empty? %>
+  $comment.html("<%=j render("comments/comment", {comment: @comment, group: @group, micropost: @micropost}) %>");
+  $comment_form[0].remove();
+<% else %>
+  $comment_form.before("<div class='alert alert-warning alert-dismissible' role='alert'>
+    <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+      <span aria-hidden='true'>&times;</span></button>
+      <ul><% @comment.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %> 
+      </ul></div>").prev().delay(1500).slideUp();
+<% end %>

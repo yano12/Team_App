@@ -18,6 +18,13 @@ Rails.application.routes.draw do
   resources :players
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
-  resources :microposts,          only: [:create, :destroy]
+  resources :microposts do
+    # コメント機能用のルーティング
+    resources :comments,except: [:index,:show] do
+      member do
+        get :reply
+      end
+    end
+  end
   resources :relationships,       only: [:create, :destroy]
 end

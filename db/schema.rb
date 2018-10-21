@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181020084330) do
+ActiveRecord::Schema.define(version: 20181021095319) do
+
+  create_table "comments", force: :cascade do |t|
+    t.string "content"
+    t.integer "player_id"
+    t.integer "micropost_id"
+    t.integer "parent_id"
+    t.integer "replies_count"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["micropost_id"], name: "index_comments_on_micropost_id"
+    t.index ["parent_id"], name: "index_comments_on_parent_id"
+    t.index ["player_id"], name: "index_comments_on_player_id"
+  end
 
   create_table "microposts", force: :cascade do |t|
     t.text "content"
@@ -20,6 +33,7 @@ ActiveRecord::Schema.define(version: 20181020084330) do
     t.string "picture"
     t.integer "team_id"
     t.integer "in_reply_to", default: 0
+    t.integer "comments_count", default: 0, null: false
     t.index ["player_id", "created_at"], name: "index_microposts_on_player_id_and_created_at"
     t.index ["player_id"], name: "index_microposts_on_player_id"
     t.index ["team_id"], name: "index_microposts_on_team_id"

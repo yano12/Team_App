@@ -1,0 +1,45 @@
+<div id="comment_<%= comment.id %>" class="comment">
+  <div class="comment-content">
+    <div class="comment-user-info">
+      <%= link_to gravatar_for(comment.player, size: 50), comment.player %>
+      <%= link_to comment.player.name, comment.player %>>
+      <%= link_to (player_path(comment.player)),
+      class: "#{'postuser' if comment.micropost.player_id == comment.player_id}" do %>
+        <%= comment.player.name %>
+      <% end %>
+    </div>
+    <% if comment.parent_id.present? %>
+      <p class="reply-user">
+        <!-- <a href="anchor名"></a>を生成する -->
+        <%=link_to ">>#{comment.parent.player.name}さん",
+                    anchor: "comment_#{comment.parent.id }" %>
+      </p>
+    <% end %>
+    <p>
+      <%= simple_format(comment.content) %>
+    </p>
+    <div class ="comment-info">
+      <p class="comment-date">
+        <%= comment.created_at.to_s(:datetime) %>に投稿
+        <% if logged_in? %>
+          <% if current_player.id == comment.player_id %>
+            <%= link_to "編集", edit_micropost_comment_path(micropost ,comment),
+                                      class: 'edit-comment-link',remote:true %>
+            <%= link_to "削除", [post, comment], method: :delete,
+              class: 'delete-comment-link', data:{confirm:"Are your sure?"}, remote: true %>
+          <% else %>
+          <!-- remote: true を指定するとAjaxによって画面を切り替えれる -->
+            <%= link_to "返信", reply_micropost_comment_path(micropost, comment),
+                                    class: 'reply-comment-link', remote: true %>
+          <% end %>
+        <% end %>
+      </p>
+    </div>
+  </div>
+  <div class="comment-reply">
+    <% if comment.replies_count > 0 %>
+      <%= render partial: 'comments/comment', locals:{micropost:micropost},
+                collection: comment.replies.includes(:player, :micropost, :parent) %>
+    <% end %>
+  </div>
+</div>
