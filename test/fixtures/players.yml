@@ -54,3 +54,21 @@ player_<%= n %>:
   activated: true
   activated_at: <%= Time.zone.now %>
 <% end %>
+
+fuga:
+  name: Fuga Fuga
+  email: fuga@example.gov
+  password_digest: <%= Player.digest('password') %>
+  team: lakers
+  team_manager: true
+  activated: true
+  activated_at: <%= Time.zone.now %>
+  
+piyo:
+  name: Piyo Piyo
+  email: piyo@example.gov
+  password_digest: <%= Player.digest('password') %>
+  team: spurs
+  team_manager: true
+  activated: true
+  activated_at: <%= Time.zone.now %>

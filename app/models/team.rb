@@ -44,11 +44,18 @@ class Team < ApplicationRecord
     following.include?(other_team)
   end
   
+  def players_names
+    team = Team.find(params[:id])
+    @players = team.players
+  end
+  
   # フォローしたチームに所属しているプレイヤーの投稿を返す
   def feed
     following_ids = "SELECT followed_id FROM relationships
                      WHERE follower_id = :team_id"
-    Micropost.where("team_id IN (#{following_ids})
-                     OR team_id = :team_id", team_id: id)
+    #following_team_players_name = "SELECT name FROM players
+     #                              WHERE team_id IN following_ids"
+    Micropost.including_replies(id)
+    .where("team_id IN (#{following_ids}) OR team_id = :team_id", team_id: id)
   end
 end
