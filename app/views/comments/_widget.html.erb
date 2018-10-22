@@ -2,8 +2,8 @@
   <div class="comments-left">
     <h2 class="comments-header">
       コメント
-      <small id="comments-count-of-post">
-        <%= micropost.comments_count %>
+      <small id="comments-count-of-micropost">
+        <%= micropost.comments_count.to_i %>
       </small>
     </h2>
     <div id="comment-wrap">
@@ -11,6 +11,6 @@
       <%= render partial: 'comments/comment', locals: {micropost: micropost},
             collection: micropost.comments.where(parent_id: nil).includes(:player) %>
     </div>
-      <%= render 'comments/form', {comment: comment, micropost: micropost} %>
+      <%= render 'comments/form', locals: {comment: comment, micropost: micropost} %>
   </div>
 </div>

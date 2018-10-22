@@ -1,16 +1,16 @@
 class CommentsController < ApplicationController
-  before_action :authenticate_player!, only:[:update, :create, :destroy]
+  before_action :logged_in_player, only:[:update, :create, :destroy]
   before_action :set_comment, only: [ :reply, :edit, :update, :destroy ]
 
   def reply
-    @reply = @micromicropost.comments.build(parent: @comment)
+    @reply = @micropost.comments.build(parent: @comment)
   end
 
   def new
   end
 
   def create
-    @micropost = Micropost.find(params[:id])
+    @micropost = Micropost.find(params[:micropost_id])
     @comment = @micropost.comments.build(comment_params)
     @comment.player = current_player
 

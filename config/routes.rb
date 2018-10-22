@@ -20,7 +20,8 @@ Rails.application.routes.draw do
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :microposts do
     # コメント機能用のルーティング
-    resources :comments,except: [:index,:show] do
+    resources :comments, except: [:index,:show] do
+      # メンバールーティングを追加
       member do
         get :reply
       end

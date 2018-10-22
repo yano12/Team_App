@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181021095319) do
+ActiveRecord::Schema.define(version: 20181022071425) do
 
   create_table "comments", force: :cascade do |t|
     t.string "content"
@@ -37,6 +37,11 @@ ActiveRecord::Schema.define(version: 20181021095319) do
     t.index ["player_id", "created_at"], name: "index_microposts_on_player_id_and_created_at"
     t.index ["player_id"], name: "index_microposts_on_player_id"
     t.index ["team_id"], name: "index_microposts_on_team_id"
+  end
+
+  create_table "parents", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "players", force: :cascade do |t|

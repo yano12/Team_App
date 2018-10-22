@@ -5,7 +5,7 @@ class Comment < ApplicationRecord
   belongs_to :player
   belongs_to :micropost
 
-  counter_culture :post
+  counter_culture :micropost
   
   # 関連付けの自己結合(Railsガイド:　https://railsguides.jp/association_basics.html)
   has_many :replies,class_name:'Comment', foreign_key: :parent_id, dependent: :destroy    # 子コメント
