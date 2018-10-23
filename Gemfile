@@ -18,7 +18,11 @@ gem 'turbolinks',   '5.0.1'
 gem 'jbuilder',     '2.7.0'
 # Micropostモデルが何件のコメントを持っているかを計測
 gem 'counter_culture', '~> 1.8'
+
 gem 'simple_form'
+
+# Configuration using config/settings/#{env}.yml
+gem 'config'
 
 group :development, :test do
   gem 'sqlite3', '1.3.13'

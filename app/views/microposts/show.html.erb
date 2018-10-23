@@ -1,6 +1,7 @@
 <% provide(:title, @micropost.content) %>
 <% provide(:placeholder, "") %>
 <% provide(:value, "#{@micropost.content}") %>
+<% provide(:submit, "編集") %>
 <div class="row">
   <aside class="col-md-4">
     <%= link_to gravatar_for(@micropost.player, size: 50), @micropost.player %>

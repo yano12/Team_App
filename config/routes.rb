@@ -28,4 +28,6 @@ Rails.application.routes.draw do
     end
   end
   resources :relationships,       only: [:create, :destroy]
+  # RSSフィード用のルーティング
+  resources :feeds, only: [:index], defaults: { format: :rss }
 end
