@@ -63,7 +63,7 @@ class PlayersSignupTest < ActionDispatch::IntegrationTest
     get edit_account_activation_path(player.activation_token, email: player.email)
     assert player.reload.activated?
     follow_redirect!
-    assert_template 'players/show'
+    assert_template 'top_pages/home'
     assert_not flash.empty?
   end
 end

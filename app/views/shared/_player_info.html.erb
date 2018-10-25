@@ -1,4 +1,3 @@
 <%= link_to gravatar_for(current_player, size: 50), current_player %>
 <h1><%= current_player.name %></h1>
-<span><%= link_to "view my profile", current_player %></span>
-<span><%= pluralize(current_player.microposts.count, "micropost") %></span>
+<span><%= current_player.microposts.count %>件の投稿</span>

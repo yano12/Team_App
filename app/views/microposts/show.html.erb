@@ -1,7 +1,8 @@
 <% provide(:title, @micropost.content) %>
 <% provide(:placeholder, "") %>
 <% provide(:value, "#{@micropost.content}") %>
-<% provide(:submit, "編集") %>
+<% provide(:class, "") %>
+<% provide(:submit, "投稿を編集") %>
 <div class="row">
   <aside class="col-md-4">
     <%= link_to gravatar_for(@micropost.player, size: 50), @micropost.player %>
@@ -15,11 +16,9 @@
     <% if current_player?(@micropost.player) %>
       <section class="micropost_form">
         <%= render 'shared/micropost_form' %>
+        <%= link_to "投稿を削除", @micropost, method: :delete,
+                                         data: { confirm: "You sure?" } %>
       </section>
-      <%= link_to "削除", @micropost, method: :delete,
-                                       data: { confirm: "You sure?" } %>
-       | 
-      <%= link_to "編集", edit_micropost_path(@micropost) %>
     <% else %>
       <span class="content">
         <%= @micropost.content %>
@@ -28,5 +27,7 @@
     <% end %>
   </aside>
   <!-- localsで変数を代入 -->
-  <%= render partial:'comments/widget', locals:{micropost: @micropost, comment: @comment} %>
+  <section class="col-md-8">
+    <%= render partial:'comments/widget', locals:{micropost: @micropost, comment: @comment} %>
+  </section>
 </div>

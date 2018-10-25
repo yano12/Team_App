@@ -1,15 +1,10 @@
-<% provide(:placeholder, "Compose new micropost...") %>
+<% provide(:placeholder, "新しい投稿．．．") %>
 <% provide(:value, "") %>
+<% provide(:class, "") %>
 <% provide(:submit, "投稿") %>
 <% if logged_in? %>
   <div class="row">
     <aside class="col-md-4">
-      <section class="team_info">
-        <h1>
-          <%= gravatar_for current_team %>
-          <%= current_team.name %>
-        </h1>
-      </section>
       <section class="player_info">
         <%= render 'shared/player_info' %>
       </section>
@@ -18,6 +13,11 @@
       </section>
     </aside>
     <div class="col-md-8">
+      <section class="team_info">
+        <h1>
+          <%= link_to current_team.name, current_team %>
+        </h1>
+      </section>
       <h3>投稿</h3>
       <%= render 'shared/feed' %>
     </div>

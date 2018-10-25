@@ -6,7 +6,7 @@ class AccountActivationsController < ApplicationController
       player.activate
       log_in player
       flash[:success] = "アカウントを有効化しました。"
-      redirect_to player
+      redirect_to root_url
     else
       flash[:danger] = "Invalid activation link"
       redirect_to root_url

@@ -32,6 +32,10 @@ textarea {
   }
 }
 
+ul {
+  list-style: none;
+}
+
 /* typography */
 
 h1, h2, h3, h4, h5, h6 {
@@ -242,7 +246,7 @@ input {
   }
 }
 
-#session_remember_me {
+#session_remember_me, #player_team_manager {
   width: auto;
   margin-left: 0;
 }

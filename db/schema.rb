@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181022071425) do
+ActiveRecord::Schema.define(version: 20181023115536) do
 
   create_table "comments", force: :cascade do |t|
     t.string "content"
@@ -59,6 +59,12 @@ ActiveRecord::Schema.define(version: 20181022071425) do
     t.string "reset_digest"
     t.datetime "reset_sent_at"
     t.boolean "team_manager", default: false
+    t.integer "number"
+    t.string "position"
+    t.float "height"
+    t.float "weight"
+    t.integer "grade"
+    t.string "old_school"
     t.index ["email"], name: "index_players_on_email", unique: true
     t.index ["team_id", "created_at"], name: "index_players_on_team_id_and_created_at"
     t.index ["team_id"], name: "index_players_on_team_id"

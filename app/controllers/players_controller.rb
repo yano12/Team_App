@@ -48,7 +48,9 @@ class PlayersController < ApplicationController
 
     def player_params
       params.require(:player).permit(:team_manager, :name, :email, :password,
-                                   :password_confirmation)
+                                   :password_confirmation,
+                                   :number, :position, :height, :weight,
+                                   :grade, :old_school)
     end
     
     # beforeアクション

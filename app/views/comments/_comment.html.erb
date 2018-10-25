@@ -1,15 +1,15 @@
 <div id="comment_<%= comment.id %>" class="comment">
   <div class="comment-content">
-    <div class="comment-user-info">
+    <div class="comment-player-info">
       <%= link_to gravatar_for(comment.player, size: 50), comment.player %>
       <%= link_to comment.player.name, comment.player %>>
       <%= link_to (player_path(comment.player)),
-      class: "#{'microplayer' if comment.micropost.player_id == comment.player_id}" do %>
-        <%= comment.player.name %>
+      class: "#{'postuser' if comment.micropost.player_id == comment.player_id}" do %>
+        <%= comment.micropost.player.name %>
       <% end %>
     </div>
     <% if comment.parent_id.present? %>
-      <p class="reply-user">
+      <p class="reply-player">
         <!-- <a href="anchor名"></a>を生成する -->
         <%=link_to ">>#{comment.parent.player.name}さん",
                     anchor: "comment_#{comment.parent.id }" %>

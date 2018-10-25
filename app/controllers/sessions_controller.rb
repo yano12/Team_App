@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       if @player.activated?
         log_in @player
         params[:session][:remember_me] == '1' ? remember(@player) : forget(@player)
-        redirect_back_or @player
+        redirect_back_or root_url
       else
         message  = "アカウントが有効化されていません。"
         message += "アカウント有効化メールを確認してください。"
