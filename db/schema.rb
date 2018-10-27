@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181023115536) do
+ActiveRecord::Schema.define(version: 20181026064635) do
 
   create_table "comments", force: :cascade do |t|
     t.string "content"
@@ -32,8 +32,9 @@ ActiveRecord::Schema.define(version: 20181023115536) do
     t.datetime "updated_at", null: false
     t.string "picture"
     t.integer "team_id"
-    t.integer "in_reply_to", default: 0
     t.integer "comments_count", default: 0, null: false
+    t.string "in_reply_to"
+    t.string "team_name"
     t.index ["player_id", "created_at"], name: "index_microposts_on_player_id_and_created_at"
     t.index ["player_id"], name: "index_microposts_on_player_id"
     t.index ["team_id"], name: "index_microposts_on_team_id"

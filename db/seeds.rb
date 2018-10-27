@@ -1,9 +1,9 @@
-Team.create!(name:  "Example Team",
+Team.create!(name:  "ExampleTeam",
              password:              "basket",
              password_confirmation: "basket")
 
 65.times do |n|
-  name  = Faker::Name.name
+  name  = Faker::Team.name
   password = "password"
   Team.create!(name:  name,
                password:              password,

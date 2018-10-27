@@ -1,7 +1,7 @@
 class PlayersController < ApplicationController
   before_action :logged_in_player, only: [:index, :edit, :update, :destroy]
   before_action :correct_player,   only: [:edit, :update]
-  before_action :admin_player,     only: :destroy
+  #before_action :admin_player,     only: :destroy
   
   def show
     @player = Player.find(params[:id])

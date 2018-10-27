@@ -2,11 +2,7 @@
   <div class="comment-content">
     <div class="comment-player-info">
       <%= link_to gravatar_for(comment.player, size: 50), comment.player %>
-      <%= link_to comment.player.name, comment.player %>>
-      <%= link_to (player_path(comment.player)),
-      class: "#{'postuser' if comment.micropost.player_id == comment.player_id}" do %>
-        <%= comment.micropost.player.name %>
-      <% end %>
+      <%= link_to comment.player.name, comment.player %>
     </div>
     <% if comment.parent_id.present? %>
       <p class="reply-player">

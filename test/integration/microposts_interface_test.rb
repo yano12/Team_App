@@ -42,57 +42,54 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
   test "micropost sidebar count" do
     log_in_as(@player)
     get root_path
-    assert_match "#{@player.microposts.count} microposts", response.body
+    assert_match "#{@player.microposts.count}件の投稿", response.body
     # まだマイクロポストを投稿していないユーザー
     other_player = players(:malory)
     log_in_as(other_player)
     get root_path
-    assert_match "0 microposts", response.body
+    assert_match "0件の投稿", response.body
     other_player.microposts.create!(content: "A micropost",
                                     team_id: other_player.team_id)
     get root_path
-    assert_match "1 micropost", response.body
+    assert_match "1件の投稿", response.body
   end
   
   test "reply to other player" do
+    other_player = players(:fuga)
     log_in_as(@player)
     get root_path
-    # invalid post(ID doesn't exist)
+    # invalid post(チームが存在しません。)
     assert_no_difference 'Micropost.count' do
-      post microposts_path, params: {micropost: {content: "@1000000000000000000"}}
+      post microposts_path, params: {micropost: {content: "@ん 返信"}}
     end
     assert_select 'div#error_explanation'
-    # invalid post(Reply to yourself)
+    # invalid post(自分のチームには返信できません。)
     assert_no_difference 'Micropost.count' do
-      post microposts_path, params: {micropost: {content: "@#{@player.id}-Hoge-Hoge"}}
-    end
-    assert_select 'div#error_explanation'
-    # invalid post(ID doesn't match its player name)
-    other_player = players(:fuga)
-    assert_no_difference 'Micropost.count' do
-      post microposts_path, params: {micropost: {content: "@#{other_player.id}-Hogera-Hogera"}}
+      post microposts_path, params: {micropost: {content: "@#{@player.team.name}　返信"}}
     end
     assert_select 'div#error_explanation'
     # valid post
     assert_difference 'Micropost.count', 1 do
-      post microposts_path, params: {micropost: {content: "@#{other_player.id}-Fuga-Fuga", team_id: @player.team_id}}
+      post microposts_path, params: {micropost: {content: "@#{other_player.team.name} 返信",
+                                     team_id: @player.team_id}}
     end
   end
   
   test "reply post visibility" do
+    reply_to_player = players(:fuga)
+    other_player = players(:piyo)
     log_in_as(@player)
     get root_path
-    reply_to_player = players(:fuga)
-    content = "@#{reply_to_player.id}-Fuga-Fuga"
-    post microposts_path, params: {micropost: {content: content, team_id: @player.team_id}}
+    content = "@#{reply_to_player.team.name} 返信"
+    post microposts_path, params: {micropost: {content: content,
+                                    team_id: @player.team_id}}
     follow_redirect!
     assert_match content, response.body
     # should be visible
     log_in_as(reply_to_player)
     get root_path
-    #assert_match content, response.body
+    assert_match content, response.body
     # shouldn't be visible
-    other_player = players(:piyo)
     log_in_as(other_player)
     get root_path
     assert_no_match content, response.body

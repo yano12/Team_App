@@ -10,8 +10,8 @@ class Micropost < ApplicationRecord
   validates :in_reply_to, presence: false
   validate  :picture_size, :reply_to_player
   
-  def Micropost.including_replies(id)
-    where(in_reply_to: [id, 0]).or(Micropost.where(team_id: id))
+  def Micropost.including_replies_name(name)
+    where(in_reply_to: [name, nil]).or(Micropost.where(team_name: name))
   end
   
   private
@@ -26,15 +26,16 @@ class Micropost < ApplicationRecord
     # before
     
     def set_in_reply_to
-      if @index = content.index("@")
-        reply_id = []
-        while is_i?(content[@index+1])
+      if content.include?("@") && content.index("@") == 0
+        @index = content.index("@")
+        reply_name = []
+        until content[@index+1].blank? do
           @index += 1
-          reply_id << content[@index]
+          reply_name << content[@index]
         end
-        self.in_reply_to = reply_id.join.to_i
+        self.in_reply_to = reply_name.join
       else
-        self.in_reply_to = 0
+        self.in_reply_to = ""
       end
     end
 
@@ -43,22 +44,13 @@ class Micropost < ApplicationRecord
     end
 
     def reply_to_player
-      return if self.in_reply_to == 0 # 1
-      unless player = Player.find_by(id: self.in_reply_to) # 2
-        errors.add(:base, "Player ID you specified doesn't exist.")
+      return if self.in_reply_to == "" # 1
+      unless Team.find_by(name: self.in_reply_to) # 2
+        errors.add(:base, "チームが存在しません。")
       else
-        if player_id == self.in_reply_to # 3
-          errors.add(:base, "You can't reply to yourself.")
-        else
-          unless reply_to_player_name_correct?(player) # 4
-            errors.add(:base, "Player ID doesn't match its name.")
-          end
+        if team_name == self.in_reply_to # 3
+          errors.add(:base, "自分のチームには返信できません。")
         end
       end
-    end
-
-    def reply_to_player_name_correct?(player)
-      player_name = player.name.gsub(" ", "-")
-      content[@index+2, player_name.length] == player_name
     end
 end
