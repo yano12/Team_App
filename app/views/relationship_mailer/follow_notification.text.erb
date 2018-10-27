@@ -1,0 +1,11 @@
+<%= @team.name %>さん,
+
+<%= @follower.name %> があなたのチームをフォローしました!
+
+以下のリンクからフォロワーを確認できます。
+
+<%= @follower.name %>：
+<%= team_url(@follower) %>
+
+フォロワーリスト：
+<%= followers_team_url(@team) %>

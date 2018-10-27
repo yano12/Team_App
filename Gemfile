@@ -20,6 +20,8 @@ gem 'jbuilder',     '2.7.0'
 gem 'counter_culture', '~> 1.8'
 
 gem 'simple_form'
+#　日本語のメール
+#gem 'mail-iso-2022-jp'
 
 # Configuration using config/settings/#{env}.yml
 gem 'config'

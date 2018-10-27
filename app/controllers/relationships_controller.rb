@@ -3,7 +3,8 @@ class RelationshipsController < ApplicationController
 
   def create
     @team = Team.find(params[:followed_id])
-    current_team.follow(@team)
+    @players = @team.players
+    current_team.follow(@team, @players)
     respond_to do |format|
       format.html { redirect_to @team }
       format.js
@@ -12,7 +13,8 @@ class RelationshipsController < ApplicationController
 
   def destroy
     @team = Relationship.find(params[:id]).followed
-    current_team.unfollow(@team)
+    @players = @team.players
+    current_team.unfollow(@team, @players)
     respond_to do |format|
       format.html { redirect_to @team }
       format.js

@@ -50,7 +50,7 @@ class PlayersController < ApplicationController
       params.require(:player).permit(:team_manager, :name, :email, :password,
                                    :password_confirmation,
                                    :number, :position, :height, :weight,
-                                   :grade, :old_school)
+                                   :grade, :old_school, :follow_notification)
     end
     
     # beforeアクション

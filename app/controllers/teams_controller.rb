@@ -1,6 +1,7 @@
 class TeamsController < ApplicationController
   before_action :logged_in_player,  only: [:destroy, :following, :followers]
-  before_action :manager_player,        only: :destroy
+  before_action :manager_player,    only: :destroy
+  before_action :correct_team,    only: :destroy
   
   def show
     @team = Team.find(params[:id])
@@ -64,5 +65,11 @@ class TeamsController < ApplicationController
     # チーム管理者かどうか確認
     def manager_player
       redirect_to(root_url) unless enabled?(current_player)
+    end
+    
+    # 正しいチームかどうか確認
+    def correct_team
+      @team = Team.find(params[:id])
+      redirect_to(root_url) unless current_team?(@team)
     end
 end

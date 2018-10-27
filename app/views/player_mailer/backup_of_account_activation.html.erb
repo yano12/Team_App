@@ -1,0 +1,58 @@
+HTML
+
+<h1>Team App</h1>
+
+<p><%= @player.name %>さん！</p>
+
+<p>
+Team App　へようこそ! 
+以下のリンクをクリックしてアカウントを有効化してください:
+</p>
+
+<%= link_to "アカウント有効化", edit_account_activation_url(@player.activation_token,
+                                                    email: @player.email) %>
+
+<p>
+  このメールにお心当たりのない場合は、お手数ですが
+  <a href="mailto:teamapp@example.com">Team App</a>までご連絡ください。
+</p>
+
+--------------------------------------------------------------------------------
+text
+
+<%= @player.name %>さん！
+
+Team App　へようこそ! 
+以下のURLからアカウントを有効化してください。
+
+<%= edit_account_activation_url(@player.activation_token, email: @player.email) %>
+
+このメールにお心当たりのない場合は、お手数ですがteamapp@example.comまでご連絡ください。
+
+--------------------------------------------------------------------------------
+Password reset
+
+HTML
+
+<h1>パスワードリセット</h1>
+
+<p><%= @player.name %>さん、
+    2時間以内に下記のリンクにアクセスパスワードをリセットしてください:</p>
+
+<%= link_to "Reset password", edit_password_reset_url(@player.reset_token,
+                                                      email: @player.email) %>
+
+<p>
+パスワードをリセットしたくない場合、このメールは無視してください。
+</p>
+
+-------------------------------------------------------------------------------
+text
+
+<%= @player.name %>さん、
+
+2時間以内に下記のリンクにアクセスパスワードをリセットしてください。
+
+<%= edit_password_reset_url(@player.reset_token, email: @player.email) %>
+
+パスワードをリセットしたくない場合、このメールは無視してください。

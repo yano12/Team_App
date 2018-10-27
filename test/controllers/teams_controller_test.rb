@@ -20,7 +20,7 @@ class TeamsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to login_url
   end
 
-  test "should redirect destroy when logged in as a non-admin" do
+  test "should redirect destroy when logged in as a non-manager" do
     log_in_as(@not_manager)
     assert_no_difference 'Team.count' do
       delete team_path(@not_manager.team)

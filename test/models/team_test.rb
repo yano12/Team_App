@@ -50,10 +50,10 @@ class TeamTest < ActiveSupport::TestCase
     suns = teams(:suns)
     heat  = teams(:heat)
     assert_not suns.following?(heat)
-    suns.follow(heat)
+    suns.follow(heat, heat.players)
     assert suns.following?(heat)
     assert heat.followers.include?(suns)
-    suns.unfollow(heat)
+    suns.unfollow(heat, heat.players)
     assert_not suns.following?(heat)
   end
   

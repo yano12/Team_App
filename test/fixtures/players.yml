@@ -7,6 +7,7 @@ michael:
   team_manager: true
   activated: true
   activated_at: <%= Time.zone.now %>
+  follow_notification: true
   
 non_activated:
   name: Non Activated
@@ -63,6 +64,7 @@ fuga:
   team_manager: true
   activated: true
   activated_at: <%= Time.zone.now %>
+  follow_notification: true
   
 piyo:
   name: Piyo Piyo
@@ -72,3 +74,14 @@ piyo:
   team_manager: true
   activated: true
   activated_at: <%= Time.zone.now %>
+  follow_notification: true
+  
+hogehoge:
+  name: Hoge Hoge
+  email: hoge@example.gov
+  password_digest: <%= Player.digest('password') %>
+  team: heat
+  team_manager: true
+  activated: true
+  activated_at: <%= Time.zone.now %>
+  follow_notification: true

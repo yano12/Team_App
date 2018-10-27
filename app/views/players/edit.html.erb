@@ -4,17 +4,22 @@
   <div class="col-md-6 col-md-offset-3">
     <%= form_for(@player, url: player_path) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
-  
-      <%= f.label :name, "プレイヤー名" %>
-      <%= f.text_field :name, class: 'form-control' %>
       
       <%= f.label :team_manager, class: "checkbox inline" do %>
         <%= f.check_box :team_manager %>
-        <span>チーム管理者になる</span>
+        <span>チーム管理者</span>
       <% end %>
+      
+      <%= f.label :name, "プレイヤー名" %>
+      <%= f.text_field :name, class: 'form-control' %>
       
       <%= f.label :email, "メールアドレス" %>
       <%= f.email_field :email, class: 'form-control' %>
+      
+      <%= f.label :follow_notification, class:"checkbox inline" do %>
+        <%= f.check_box :follow_notification %>
+        <span>フォロー/フォロー解除を通知</span>
+      <% end %>
 
       <%= f.label :password, "パスワード" %>
       <%= f.password_field :password, class: 'form-control' %>
