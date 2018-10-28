@@ -1,4 +1,12 @@
 class Player < ApplicationRecord
+  has_many :from_messages, class_name: "Message",
+                           foreign_key: "from_id", 
+                           dependent: :destroy
+  has_many :to_messages, class_name: "Message",
+                         foreign_key: "to_id", 
+                         dependent: :destroy
+  has_many :sent_messages, through: :from_messages, source: :from
+  has_many :received_messages, through: :to_messages, source: :to
   has_many :comments
   has_many :microposts, dependent: :destroy
   belongs_to :team
@@ -72,6 +80,11 @@ class Player < ApplicationRecord
   # パスワード再設定の期限が切れている場合はtrueを返す
   def password_reset_expired?
     reset_sent_at < 2.hours.ago
+  end
+  
+  # Send message to other player
+  def send_message(other_player, room_id, content)
+    from_messages.create!(to_id: other_player.id, room_id: room_id, content: content)
   end
   
   private

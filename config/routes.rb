@@ -30,4 +30,6 @@ Rails.application.routes.draw do
   resources :relationships,       only: [:create, :destroy]
   # RSSフィード用のルーティング
   resources :feeds, only: [:index], defaults: { format: :rss }
+  # ActionCableを利用するため
+  mount ActionCable.server => '/cable'
 end

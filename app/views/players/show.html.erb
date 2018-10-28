@@ -18,6 +18,26 @@
       <p>体重：<%= @player.weight %>kg</p>
       <p>出身校：<%= @player.old_school %></p>
     </section>
+    <% if !current_team?(@team) && logged_in? %>
+      <section class="message_box">
+        <!-- メッセージ一覧を表示 -->
+        <div id="messages">
+          <%= render @messages %>
+        </div>
+      </section>
+      <script type="text/javascript">
+        var height = 0;
+        $("div.message").each( function() {
+          height += ($(this).height());
+        });
+        $('section.message_box').scrollTop(height);
+      </script>
+        <!-- メッセージ送信フォームを表示 -->
+      <div class="message_form">
+       <%= render 'messages/message_form',
+         {from_player: current_player, to_player: @player, room_id: @room_id} %>
+      </div>
+    <% end %>
   </aside>
   <div class="col-md-8">
     <% if @player.microposts.any? %>

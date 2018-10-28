@@ -1,0 +1,7 @@
+<form class="message_form">
+  <input type="hidden" name="from_id" value="<%= from_player.id %>">
+  <input type="hidden" name="to_id" value="<%= to_player.id %>">
+  <input type="hidden" name="room_id" value="<%= room_id %>">
+  <label><%= to_player.name %>さんにメッセージを送信</label><br>
+  <input type="text" name="content" data-behavior="chat_speaker">
+</form>

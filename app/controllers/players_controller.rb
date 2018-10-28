@@ -5,7 +5,11 @@ class PlayersController < ApplicationController
   
   def show
     @player = Player.find(params[:id])
+    @team = @player.team
     @microposts = @player.microposts.paginate(page: params[:page])
+    # メッセージ機能の変数定義
+    @room_id = message_room_id(current_player, @player) if logged_in? #ログインしてないとcurrent_playerはnil
+    @messages = Message.recent_in_room(@room_id)  #新規メッセージを最大500件取得
     redirect_to root_url and return unless @player.activated?
   end
   
@@ -51,6 +55,17 @@ class PlayersController < ApplicationController
                                    :password_confirmation,
                                    :number, :position, :height, :weight,
                                    :grade, :old_school, :follow_notification)
+    end
+    
+    def message_room_id(first_player, second_player)
+      first_id = first_player.id.to_i
+      second_id = second_player.id.to_i
+      # ルームIDはハイフンで両者のIDを連結したもの
+      if first_id < second_id
+        "#{first_player.id}-#{second_player.id}"
+      else
+        "#{second_player.id}-#{first_player.id}"
+      end
     end
     
     # beforeアクション

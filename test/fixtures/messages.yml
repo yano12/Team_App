@@ -1,0 +1,22 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  content: MyText
+  from_id: 1
+  to_id: 107
+  room_id: MyString
+  created_at: <%= 3.days.ago %>
+
+two:
+  content: MyText
+  from_id: 1
+  to_id: 107
+  room_id: MyString
+  created_at: <%= 2.days.ago %>
+  
+most_recent:
+  content: MyText
+  from_id: 1
+  to_id: 107
+  room_id: MyString
+  created_at: <%= 1.minute.ago %>
