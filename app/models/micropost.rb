@@ -11,7 +11,8 @@ class Micropost < ApplicationRecord
   validate  :picture_size, :reply_to_player
   
   def Micropost.including_replies_name(name)
-    where(in_reply_to: [name, nil]).or(Micropost.where(team_name: name))
+    where(in_reply_to: [name, ""]).or(Micropost.where(team_name: name))
+    # in_reply_toが""じゃなくてnilだと上手くいかない(フォロワーの投稿が表示されない)
   end
   
   private
@@ -37,10 +38,6 @@ class Micropost < ApplicationRecord
       else
         self.in_reply_to = ""
       end
-    end
-
-    def is_i?(s)
-      Integer(s) != nil rescue false
     end
 
     def reply_to_player

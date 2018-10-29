@@ -27,6 +27,7 @@ Rails.application.configure do
   end
 
   # Don't care if the mailer can't send.
+  config.action_mailer.perform_deliveries = false
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :test
   host = 'e6f6c6623bdb4da99b2b1e03ebb963e8.vfs.cloud9.us-east-2.amazonaws.com'

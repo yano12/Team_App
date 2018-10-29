@@ -55,8 +55,6 @@ class Team < ApplicationRecord
   def feed
     following_ids = "SELECT followed_id FROM relationships
                      WHERE follower_id = :team_id"
-    #following_team_players_name = "SELECT name FROM players
-     #                              WHERE team_id IN following_ids"
     Micropost.including_replies_name(name)
     .where("team_id IN (#{following_ids}) OR team_id = :team_id", team_id: id)
   end

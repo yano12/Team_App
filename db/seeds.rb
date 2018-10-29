@@ -1,4 +1,4 @@
-Team.create!(name:  "ExampleTeam",
+Team.create!(name:  "Example Team",
              password:              "basket",
              password_confirmation: "basket")
 
@@ -34,16 +34,19 @@ team.players.create!(name:  "Example Player",
                        activated_at: Time.zone.now)
 end
 
+teams = Team.all
+
+
+# マイクロポスト
 players = Player.order(:created_at).take(6)
 50.times do
   content = Faker::Lorem.sentence(5)
-  players.each { |player| player.microposts.create!(content: content, team_id: player.team_id) }
+  players.each { |p| p.microposts.create!(content: content, team_id: p.team_id) }
 end
 
 # リレーションシップ
-teams = Team.all
 team  = teams.first
 following = teams[2..50]
 followers = teams[3..40]
-following.each { |followed| team.follow(followed) }
-followers.each { |follower| follower.follow(team) }
+following.each { |followed| team.follow(followed, followed.players) }
+followers.each { |follower| follower.follow(team, team.players) }
