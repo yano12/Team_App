@@ -18,13 +18,17 @@ gem 'turbolinks',   '5.0.1'
 gem 'jbuilder',     '2.7.0'
 # Micropostモデルが何件のコメントを持っているかを計測
 gem 'counter_culture', '~> 1.8'
-
 gem 'simple_form'
 #　日本語のメール
 #gem 'mail-iso-2022-jp'
-
 # Configuration using config/settings/#{env}.yml
 gem 'config'
+# カレンダー機能用のGem
+gem 'fullcalendar-rails'
+# 日付処理に用いるGem
+gem 'momentjs-rails'
+# リロードしなくてもJavascriptが動くようにするGem
+gem 'jquery-turbolinks'
 
 group :development, :test do
   gem 'sqlite3', '1.3.13'

@@ -11,10 +11,9 @@ Rails.application.routes.draw do
   # delete '/team/logout',  to: 'team_sessions#destroy'
   resources :teams do
     member do
-      get :following, :followers
+      get :following, :followers, :calendar
     end
   end
-  resources :teams
   resources :players
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]

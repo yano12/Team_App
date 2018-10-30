@@ -13,7 +13,7 @@
               <li><%= link_to "マイページ", player_path(current_player) %></li>
               <li><%= link_to "プロフィール編集", edit_player_path(current_player) %></li>
               <li><%= link_to "マイチーム", team_path(current_team) %></li>
-              <li><%= link_to "スケジュール", '#' %></li>
+              <li><%= link_to "スケジュール", calendar_team_path(current_team) %></li>
             </ul>
           </li>
           <li><%= link_to "ログアウト", logout_path, method: :delete %></li>

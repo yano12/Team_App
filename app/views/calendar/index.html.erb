@@ -1,0 +1,12 @@
+<% provide(:title, "スケジュール") %>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <section class="team_info">
+      <h1>
+        <%= link_to gravatar_for(@team, size: 50), @team %>
+        スケジュール
+      </h1>
+    </section>
+    <div id="calendar"></div>
+  </div>
+</div>
