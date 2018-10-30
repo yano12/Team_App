@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'events/index'
+
+  get 'events/show'
+
+  get 'events/new'
+
+  get 'events/edit'
+
   root  'top_pages#home'
   get   '/contact',  to: "top_pages#contact"
   get   '/signup',   to: "players#new"
