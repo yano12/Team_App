@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181028031355) do
+ActiveRecord::Schema.define(version: 20181030070230) do
 
   create_table "comments", force: :cascade do |t|
     t.string "content"
@@ -23,6 +23,17 @@ ActiveRecord::Schema.define(version: 20181028031355) do
     t.index ["micropost_id"], name: "index_comments_on_micropost_id"
     t.index ["parent_id"], name: "index_comments_on_parent_id"
     t.index ["player_id"], name: "index_comments_on_player_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.integer "player_id"
+    t.string "title"
+    t.boolean "disp_flg"
+    t.datetime "start"
+    t.datetime "end"
+    t.boolean "allDay"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "messages", force: :cascade do |t|

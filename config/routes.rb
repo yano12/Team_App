@@ -1,12 +1,4 @@
 Rails.application.routes.draw do
-  get 'events/index'
-
-  get 'events/show'
-
-  get 'events/new'
-
-  get 'events/edit'
-
   root  'top_pages#home'
   get   '/contact',  to: "top_pages#contact"
   get   '/signup',   to: "players#new"
@@ -39,4 +31,7 @@ Rails.application.routes.draw do
   resources :feeds, only: [:index], defaults: { format: :rss }
   # ActionCableを利用するため
   mount ActionCable.server => '/cable'
+  # カレンダーのイベントルート
+  get 'events', to: 'events#show'
+  post 'events/create', to: 'events#create'
 end
