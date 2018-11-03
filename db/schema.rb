@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181030070230) do
+ActiveRecord::Schema.define(version: 20181101090853) do
 
   create_table "comments", force: :cascade do |t|
     t.string "content"
@@ -26,12 +26,12 @@ ActiveRecord::Schema.define(version: 20181030070230) do
   end
 
   create_table "events", force: :cascade do |t|
-    t.integer "player_id"
+    t.integer "team_id"
     t.string "title"
     t.boolean "disp_flg"
     t.datetime "start"
     t.datetime "end"
-    t.boolean "allDay"
+    t.string "allDay"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -34,4 +34,5 @@ Rails.application.routes.draw do
   # カレンダーのイベントルート
   get 'events', to: 'events#show'
   post 'events/create', to: 'events#create'
+  post 'events/update', to: 'events#update'
 end
