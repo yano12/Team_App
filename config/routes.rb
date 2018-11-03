@@ -32,7 +32,5 @@ Rails.application.routes.draw do
   # ActionCableを利用するため
   mount ActionCable.server => '/cable'
   # カレンダーのイベントルート
-  get 'events', to: 'events#show'
-  post 'events/create', to: 'events#create'
-  post 'events/update', to: 'events#update'
+  resources :events
 end

@@ -2,84 +2,48 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-$(document).on 'turbolinks:load', ->
-  
-  create_event = (title, start, end) ->
-    $.ajaxPrefilter (options, originalOptions, jqXHR) ->
-      if !options.crossDomain
-        token = $('meta[name="csrf-token"]').attr('content')
-        if token
-          return jqXHR.setRequestHeader('X-CSRF-Token', token)
-      return
-    $.ajax(
-      type: 'post'
-      url: '/events/create'
-      data:
-        title: title
-        start: start.toISOString()
-        end: end.toISOString()).done((data) ->
-      alert '登録しました!'
-      return
-    ).fail (data) ->
-      alert '登録できませんでした。'
-      return
-    return
-  
-  update_event = (id, title, start, end) ->
-    $.ajaxPrefilter (options, originalOptions, jqXHR) ->
-      if !options.crossDomain
-        token = $('meta[name="csrf-token"]').attr('content')
-        if token
-          return jqXHR.setRequestHeader('X-CSRF-Token', token)
-      return
-    $.ajax(
-      type: 'post'
-      url: '/events/update'
-      data:
-        id: id
-        title: title
-        start: start.toISOString()
-        end: end.toISOString()).done((data) ->
-      alert '更新しました!'
-      return
-    ).fail (data) ->
-      alert '更新できませんでした。'
-      return
-    return
 
-  $('#calendar').fullCalendar
-    header:
-      left: 'prev,today,next'
-      center: 'title'
-      right: 'month,agendaWeek,agendaDay'
-    navLinks: true
-    selectable: true
-    selectHelper: true
-    
-    select: (start, end) ->
-      title = prompt('イベントを追加')
-      if title
-        eventData =
-          title: title
-          start: start
-          end: end
-        $('#calendar').fullCalendar 'renderEvent', eventData, true
-        $('#calendar').fullCalendar 'unselect'
-        create_event title, start, end
-      return
-    
-    eventClick: (event, element) ->
-      title = prompt('イベントを変更')
-      $('#calendar').fullCalendar 'updateEvent', event
-      update_event event.id, title, event.start, event.end
-      return
-    
-    timezone: 'UTC'
-    events: '/events.json'
-    editable: true
-    
+initialize_calendar = ->
+  $('.calendar').each ->
+    calendar = $(this)
+    calendar.fullCalendar
+      header:
+        left: 'prev,next today'
+        center: 'title'
+        right: 'month,agendaWeek,agendaDay'
+      selectable: true
+      selectHelper: true
+      editable: true
+      eventLimit: true
+      events: '/events.json'
+      select: (start, end) ->
+        $.getScript '/events/new', ->
+          $('#event_date_range').val moment(start).format('MM/DD/YYYY HH:mm') + ' - ' + moment(end).format('MM/DD/YYYY HH:mm')
+          date_range_picker()
+          $('.start_hidden').val moment(start).format('YYYY-MM-DD HH:mm')
+          $('.end_hidden').val moment(end).format('YYYY-MM-DD HH:mm')
+          return
+        calendar.fullCalendar 'unselect'
+        return
+      eventDrop: (event, delta, revertFunc) ->
+        event_data = event:
+          id: event.id
+          start: event.start.format()
+          end: event.end.format()
+        $.ajax
+          url: event.update_url
+          data: event_data
+          type: 'PATCH'
+        return
+      eventClick: (event, jsEvent, view) ->
+        $.getScript event.edit_url, ->
+          $('#event_date_range').val moment(event.start).format('MM/DD/YYYY HH:mm') + ' - ' + moment(event.end).format('MM/DD/YYYY HH:mm')
+          date_range_picker()
+          $('.start_hidden').val moment(event.start).format('YYYY-MM-DD HH:mm')
+          $('.end_hidden').val moment(event.end).format('YYYY-MM-DD HH:mm')
+          return
+        return
+    return
   return
 
-$(document).on 'turbolinks:before-cache', ->
-  $('#calendar').empty()
-  return
+$(document).on 'turbolinks:load', initialize_calendar
