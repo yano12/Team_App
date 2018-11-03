@@ -50,7 +50,7 @@ class TeamsController < ApplicationController
   end
   
   def calendar
-    @team  = current_team
+    @team = Team.find(params[:id])
     render 'calendar/index'
   end
   
@@ -60,17 +60,7 @@ class TeamsController < ApplicationController
       params.require(:team).permit(:name, :password,:password_confirmation)
     end
     
-    # チーム管理者ならtrueを返す
-    def enabled?(player)
-      ActiveRecord::Type::Boolean.new.cast(player[:enabled])
-    end
-    
     # beforeアクション
-    
-    # チーム管理者かどうか確認
-    def manager_player
-      redirect_to(root_url) unless enabled?(current_player)
-    end
     
     # 正しいチームかどうか確認
     def correct_team

@@ -15,9 +15,9 @@ initialize_calendar = ->
       selectHelper: true
       editable: true
       eventLimit: true
-      events: '/events.json'
+      events: '/teams/:team_id/events.json'
       select: (start, end) ->
-        $.getScript '/events/new', ->
+        $.getScript '/teams/:team_id/events/new', ->
           $('#event_date_range').val moment(start).format('MM/DD/YYYY HH:mm') + ' - ' + moment(end).format('MM/DD/YYYY HH:mm')
           date_range_picker()
           $('.start_hidden').val moment(start).format('YYYY-MM-DD HH:mm')

@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     member do
       get :following, :followers, :calendar
     end
+    # カレンダーのイベントルート
+    resources :events
   end
   resources :players
   resources :account_activations, only: [:edit]
@@ -31,6 +33,4 @@ Rails.application.routes.draw do
   resources :feeds, only: [:index], defaults: { format: :rss }
   # ActionCableを利用するため
   mount ActionCable.server => '/cable'
-  # カレンダーのイベントルート
-  resources :events
 end

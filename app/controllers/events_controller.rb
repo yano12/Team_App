@@ -1,17 +1,14 @@
 class EventsController < ApplicationController
+  before_action :logged_in_player,  only: [:create, :destroy]
+  #before_action :manager_player,    only: [:create, :edit, :update, :destroy]
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  #before_action :correct_event_team, only: [:edit, :update, :destroy]
 
   def index
     @events = Event.where(start: params[:start]..params[:end])
   end
   
   def show
-    #@event = Event.all
-    # 返却するレスポンスのフォーマットを切り替える
-    #respond_to do |format|
-      # オブジェクトをJSON形式に変換した上で返す
-      #format.json { render json: @event.to_json( only: [:id, :title, :start, :end] ) }
-    #end
   end
   
   def new
@@ -35,11 +32,20 @@ class EventsController < ApplicationController
   end
 
   private
+  
+    # before
+    
     def set_event
       @event = Event.find(params[:id])
     end
+    
+    # 自チームのイベントかどうか確認
+    def correct_event_team
+      @event = Event.find_by(team_id: params[:team_id])
+      redirect_to(root_url) unless @event.team_id == current_team.id
+    end
 
     def event_params
-      params.require(:event).permit(:title, :date_range, :start, :end, :color)
+      params.require(:event).permit(:title, :date_range, :start, :end, :color, :team_id)
     end
 end

@@ -4,7 +4,7 @@
     <section class="team_info">
       <h1>
         <%= link_to gravatar_for(@team, size: 50), @team %>
-        スケジュール
+        <%= @team.name %>
       </h1>
     </section>
     <div class="calendar" id="calendar"></div>
