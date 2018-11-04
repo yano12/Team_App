@@ -13,15 +13,4 @@ class ApplicationController < ActionController::Base
         redirect_to login_url
       end
     end
-    
-    
-    # チーム管理者ならtrueを返す
-    def enabled?(player)
-      ActiveRecord::Type::Boolean.new.cast(player[:enabled])
-    end
-    
-    # チーム管理者かどうか確認
-    def manager_player
-      redirect_to(root_url) unless enabled?(current_player)
-    end
 end

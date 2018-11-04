@@ -19,9 +19,6 @@
     <% if logged_in? && current_player.team_manager? %>
       <%= render 'follow_form' %>
     <% end %>
-    <% if current_team != @team %>
-      <%= link_to "スケジュール", calendar_team_path(@team) %>
-    <% end %>
     <% if @team.players.any? %>
       <h3>メンバー (<%= @team.players.count %>)</h3>
       <ol class="players">

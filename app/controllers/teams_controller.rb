@@ -67,4 +67,15 @@ class TeamsController < ApplicationController
       @team = Team.find(params[:id])
       redirect_to(root_url) unless current_team?(@team)
     end
+    
+    
+    # チーム管理者ならtrueを返す
+    def enabled?(player)
+      ActiveRecord::Type::Boolean.new.cast(player[:enabled])
+    end
+    
+    # チーム管理者かどうか確認
+    def manager_player
+      redirect_to(root_url) unless enabled?(current_player)
+    end
 end

@@ -9,6 +9,7 @@ class Team < ApplicationRecord
                                    dependent:   :destroy
   has_many :following, through: :active_relationships,  source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
+  has_many :events, dependent: :destroy
   validates :name, presence: true, length: { maximum: 100 }, uniqueness: true
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }
