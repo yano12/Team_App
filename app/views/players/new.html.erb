@@ -1,28 +1,30 @@
 <% provide(:title, "Player Sign up") %>
-<h1>プレイヤー登録</h1>
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@player, url: signup_path) do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
+<div class="container">
+  <h1>プレイヤー登録</h1>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <%= form_for(@player, url: signup_path) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+    
+        <%= f.label :name, "プレイヤー名" %>
+        <%= f.text_field :name, class: 'form-control' %>
+        
+        <%= f.label :team_manager, class: "checkbox inline" do %>
+          <%= f.check_box :team_manager %>
+          <span>チーム管理者になる</span>
+        <% end %>
+        
+        <%= f.label :email, "メールアドレス" %>
+        <%= f.email_field :email, class: 'form-control' %>
   
-      <%= f.label :name, "プレイヤー名" %>
-      <%= f.text_field :name, class: 'form-control' %>
-      
-      <%= f.label :team_manager, class: "checkbox inline" do %>
-        <%= f.check_box :team_manager %>
-        <span>チーム管理者になる</span>
+        <%= f.label :password, "パスワード" %>
+        <%= f.password_field :password, class: 'form-control' %>
+  
+        <%= f.label :password_confirmation, "パスワード確認" %>
+        <%= f.password_field :password_confirmation, class: 'form-control' %>
+        
+        <%= f.submit "プレイヤーを登録する", class: "btn btn-primary" %>
       <% end %>
-      
-      <%= f.label :email, "メールアドレス" %>
-      <%= f.email_field :email, class: 'form-control' %>
-
-      <%= f.label :password, "パスワード" %>
-      <%= f.password_field :password, class: 'form-control' %>
-
-      <%= f.label :password_confirmation, "パスワード確認" %>
-      <%= f.password_field :password_confirmation, class: 'form-control' %>
-      
-      <%= f.submit "プレイヤーを登録する", class: "btn btn-primary" %>
-    <% end %>
+    </div>
   </div>
-</div>
+</divyy

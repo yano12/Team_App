@@ -1,30 +1,32 @@
 <% provide(:title, @team.name) %>
-<div class="row">
-  <aside class="col-md-4">
-    <section class="team_info">
-      <h1>
-        <%= gravatar_for @team %>
-        <%= @team.name %>
-        <% if current_team?(@team) && current_player.team_manager? %>
-          | <%= link_to "チームを削除", @team, method: :delete,
-                                data: { confirm: "You sure?" } %>
-        <% end %>
-      </h1>
-    </section>
-    <section class="stats">
-      <%= render 'shared/stats' %>
-    </section>
-  </aside>
-  <div class="col-md-8">
-    <% if logged_in? && current_player.team_manager? %>
-      <%= render 'follow_form' %>
-    <% end %>
-    <% if @team.players.any? %>
-      <h3>メンバー (<%= @team.players.count %>)</h3>
-      <ol class="players">
-        <%= render @players %>
-      </ol>
-      <%= will_paginate @players %>
-    <% end %>
+<div class="container">
+  <div class="row">
+    <aside class="col-md-4">
+      <section class="team_info">
+        <h1>
+          <%= gravatar_for @team %>
+          <%= @team.name %>
+          <% if current_team?(@team) && current_player.team_manager? %>
+            | <%= link_to "チームを削除", @team, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+          <% end %>
+        </h1>
+      </section>
+      <section class="stats">
+        <%= render 'shared/stats' %>
+      </section>
+    </aside>
+    <div class="col-md-8 follow-btn">
+      <% if logged_in? && current_player.team_manager? %>
+        <%= render 'follow_form' %>
+      <% end %>
+      <% if @team.players.any? %>
+        <h3>メンバー (<%= @team.players.count %>)</h3>
+        <ol class="players">
+          <%= render @players %>
+        </ol>
+        <%= will_paginate @players %>
+      <% end %>
+    </div>
   </div>
 </div>

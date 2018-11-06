@@ -28,6 +28,7 @@ $secondary: #0083d1;
 
 body {
   @include body-font;
+  padding-top: 70px;
 }
 
 h1,
@@ -103,7 +104,8 @@ p {
 .navbar-custom {
   padding-top: 1rem;
   padding-bottom: 1rem;
-  background-color: fade-out($black, 0.3);
+  background-color: fade-out($black, 0.1);
+  border :0;
 }
 
 
@@ -278,6 +280,10 @@ header.masthead {
 }
 
 /* sidebar */
+
+.team-calendar {
+  text-align: center;
+}
 
 aside {
   section.team_info {
@@ -493,4 +499,10 @@ div.message_form {
 
 #message_content {
   font-size: 1.0em;
+}
+
+/* followボタン */
+
+.follow-btn {
+  padding-top: 10px;
 }

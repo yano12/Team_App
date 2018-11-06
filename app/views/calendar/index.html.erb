@@ -1,13 +1,15 @@
 <% provide(:title, "スケジュール") %>
-<div class="row">
-  <div class="col-md-10 col-md-offset-1">
-    <section class="team_info">
-      <h1>
-        <%= link_to gravatar_for(@team, size: 50), @team %>
-        <%= @team.name %>
-      </h1>
-    </section>
-    <div class="calendar" id="calendar"></div>
-    <div id='remote_container' data-team_manager="<%= current_player.team_manager %>"></div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <section class="team_info center">
+        <h1>
+          <%= link_to gravatar_for(@team, size: 50), @team %>
+          <%= @team.name %>
+        </h1>
+      </section>
+      <div class="calendar" id="calendar"></div>
+      <div id='remote_container' data-team_manager="<%= current_player.team_manager %>"></div>
+    </div>
   </div>
 </div>
