@@ -15,12 +15,13 @@
       </aside>
       <div class="col-md-8">
         <section class="team_info center">
-          <h1>
+          <h1 class="my-4">
             <%= link_to current_team.name, current_team %>
           </h1>
         </section>
-        <h3>投稿</h3>
-        <%= render 'shared/feed' %>
+        <div class="card mb-4">
+          <%= render 'shared/feed' %>
+        </div>
       </div>
     </div>
   </div>
