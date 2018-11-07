@@ -68,6 +68,11 @@ p {
 
 /* bootstrap4 */
 
+.mb-4,
+.my-4 {
+  margin-bottom: 1.5rem !important;
+}
+
 .p-5 {
   padding: 3rem !important;
 }
@@ -506,3 +511,7 @@ div.message_form {
 .follow-btn {
   padding-top: 10px;
 }
+
+/* _player.html.erb */
+
+

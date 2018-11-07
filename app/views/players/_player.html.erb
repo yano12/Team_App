@@ -1,15 +1,6 @@
-<li id="player-<%= player.id %>">
-  <%= link_to gravatar_for(player.team, size: 50), player.team %>
-  <span class="#"># <%= player.number %></span>
-  <span class="name">
-    <%= link_to player.name, player %>
-    <% if current_player?(player) %>
-    | <%= link_to "プロフィール編集", edit_player_path(player), method: :get %>
-    <% end %>
-  </span>
-  <span><%= player.position %></span>
-  <span>/<%= player.grade %>年</span>
-  <span>/<%= player.height %>cm</span>
-  <span>/<%= player.weight %>kg</span>
-  <span>/<%= player.old_school %></span>
-</li>
+<div class="col-lg-4 col-sm-6 text-center mb-4">
+  <%= link_to gravatar_for(player, size: 50), player, class:"rounded-circle img-fluid d-block mx-auto" %>
+  <h3># <%= player.number %> <%= player.name %></h3>
+  <p><%= player.grade %>年/<%= player.position %></p>
+  <p><%= player.height %>cm/<%= player.weight %>kg/<%= player.old_school %></p>
+</div>

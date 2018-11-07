@@ -1,32 +1,32 @@
 <% provide(:title, @team.name) %>
 <div class="container">
+  <h1 class="my-4">
+    <%= gravatar_for @team %>
+    <%= @team.name %>
+  </h1>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+    Sint, explicabo dolores ipsam aliquam inventore corrupti eveniet 
+    quisquam quod totam laudantium repudiandae obcaecati ea consectetur 
+    debitis velit facere nisi expedita vel?</p>
   <div class="row">
-    <aside class="col-md-4">
-      <section class="team_info">
-        <h1>
-          <%= gravatar_for @team %>
-          <%= @team.name %>
-          <% if current_team?(@team) && current_player.team_manager? %>
-            | <%= link_to "チームを削除", @team, method: :delete,
-                                  data: { confirm: "You sure?" } %>
-          <% end %>
-        </h1>
-      </section>
+    <div class="col-md-12">
       <section class="stats">
         <%= render 'shared/stats' %>
       </section>
-    </aside>
-    <div class="col-md-8 follow-btn">
-      <% if logged_in? && current_player.team_manager? %>
-        <%= render 'follow_form' %>
-      <% end %>
+      <div class ="follow-btn">
+        <% if logged_in? && current_player.team_manager? %>
+          <%= render 'follow_form' %>
+        <% end %>
+      </div>
       <% if @team.players.any? %>
-        <h3>メンバー (<%= @team.players.count %>)</h3>
-        <ol class="players">
-          <%= render @players %>
-        </ol>
-        <%= will_paginate @players %>
+        <h2 class="my-4">メンバー (<%= @team.players.count %>)</h2>
       <% end %>
     </div>
+    <% if @team.players.any? %>
+      <ol class="players">
+        <%= render @players %>
+      </ol>
+      <%= will_paginate @players %>
+    <% end %>
   </div>
 </div>
