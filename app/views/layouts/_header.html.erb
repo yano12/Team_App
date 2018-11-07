@@ -13,6 +13,9 @@
               <li><%= link_to "マイページ", player_path(current_player) %></li>
               <li><%= link_to "プロフィール編集", edit_player_path(current_player) %></li>
               <li><%= link_to "マイチーム", team_path(current_team) %></li>
+              <% if team_manager? %>
+                <li><%= link_to "チーム編集", edit_team_path(current_team) %></li>
+              <% end %>
               <li><%= link_to "スケジュール", calendar_team_path(current_team) %></li>
             </ul>
           </li>

@@ -12,7 +12,7 @@ class Team < ApplicationRecord
   has_many :events, dependent: :destroy
   validates :name, presence: true, length: { maximum: 100 }, uniqueness: true
   has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   
   # 渡された文字列のハッシュ値を返す
   def Team.digest(string)

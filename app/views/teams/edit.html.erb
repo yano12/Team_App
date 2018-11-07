@@ -1,0 +1,19 @@
+<% provide(:title, "Edit team") %>
+<% provide(:team_submit, "変更を保存する") %>
+<div class="container">
+  <h1>チーム管理</h1>
+
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <%= render 'team_form'%>
+      <div class="gravatar_edit">
+        <%= gravatar_for @team %>
+        <a href="http://gravatar.com/emails" target="_blank" rel="noopener">
+          画像を変更
+        </a>
+      </div>
+      <%= link_to "チームを削除する", @team, method: :delete,
+                                    data: { confirm: "You sure?" } %>
+    </div>
+  </div>
+</div>

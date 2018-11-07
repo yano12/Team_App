@@ -50,7 +50,7 @@
       <% end %>
       <div class="gravatar_edit">
         <%= gravatar_for @player %>
-        <a href="http://gravatar.com/emails" target="_blank">画像を変更</a>
+        <a href="http://gravatar.com/emails" target="_blank" rel="noopener">画像を変更</a>
       </div>
       <%= link_to "アカウントを削除する", @player, method: :delete,
                                     data: { confirm: "You sure?" } %>

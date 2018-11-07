@@ -1,7 +1,7 @@
 class TeamsController < ApplicationController
-  before_action :logged_in_player,  only: [:destroy, :following, :followers, :calendar]
-  before_action :manager_player,    only: :destroy
-  before_action :correct_team,      only: :destroy
+  before_action :logged_in_player,  only: [:edit, :update, :destroy, :following, :followers, :calendar]
+  before_action :manager_player,    only: [:edit, :update, :destroy]
+  before_action :correct_team,      only: [:edit, :update, :destroy]
   
   def show
     @team = Team.find(params[:id])
@@ -27,6 +27,20 @@ class TeamsController < ApplicationController
   
   def index
     @teams = Team.paginate(page: params[:page]).search(params[:search])
+  end
+  
+  def edit
+    @team = Team.find(params[:id])
+  end
+  
+  def update
+    @team = Team.find(params[:id])
+    if @team.update_attributes(team_params)
+      flash[:success] = "チームプロフィールを更新しました"
+      redirect_to @team
+    else
+      render 'edit'
+    end
   end
   
   def destroy
@@ -70,12 +84,12 @@ class TeamsController < ApplicationController
     
     
     # チーム管理者ならtrueを返す
-    def enabled?(player)
-      ActiveRecord::Type::Boolean.new.cast(player[:enabled])
+    def team_manager?(player)
+      ActiveRecord::Type::Boolean.new.cast(player[:team_manager])
     end
     
     # チーム管理者かどうか確認
     def manager_player
-      redirect_to(root_url) unless enabled?(current_player)
+      redirect_to(edit_player_path(current_player)) unless team_manager?(current_player)
     end
 end

@@ -43,6 +43,11 @@ module SessionsHelper
     end
   end
   
+  # ユーザーがチーム管理者ならtrue、その他ならfalseを返す
+  def team_manager?
+    current_player.team_manager
+  end
+  
   # ユーザーがログインしていればtrue、その他ならfalseを返す
   def logged_in?
     !current_player.nil?
