@@ -1,4 +1,4 @@
-$comment_form = $("#comment_<%=@comment.id %> .new_comment");
+$comment_form = $("#comment_<%=@comment.id %> #new_comment");
 $comment = $("#comment_<%= @comment.id %>");
 <% if @comment.errors.empty? %>
   $comment.html("<%=j render("comments/comment", {comment: @comment, group: @group, micropost: @micropost}) %>");
@@ -9,6 +9,6 @@ $comment = $("#comment_<%= @comment.id %>");
       <span aria-hidden='true'>&times;</span></button>
       <ul><% @comment.errors.full_messages.each do |message| %>
       <li><%= message %></li>
-      <% end %> 
+      <% end %>
       </ul></div>").prev().delay(1500).slideUp();
 <% end %>

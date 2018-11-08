@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_action :logged_in_player, only:[:update, :create, :destroy]
-  before_action :set_comment, only: [ :reply, :edit, :update, :destroy ]
+  before_action :set_comment, only: [:reply, :edit, :update, :destroy ]
 
   def reply
     @reply = @micropost.comments.build(parent: @comment)
@@ -66,24 +66,24 @@ class CommentsController < ApplicationController
       begin
         # 通常時の処理
         @micropost = Micropost.find(params[:id])
-        @comment = @micropost.comments.find(params[:id])
+        @comment = Comment.find(params[:id])
       rescue => e
         # 例外処理
-        logger.error "#{e.class.name} : #{e.message}"     # ログにどんなエラーが起こったかを出力
+        logger.error "#{e.class.name} : #{e.message}"
         @comment = @micropost.comments.build
         @comment.errors.add(:base, :recordnotfound, message: "この投稿は存在しません。すでに削除されている可能性があります。")
       end
     end
 
-  def change_parentcomment
-    changecomment = Comment.find(params[:comment][:parent_id])    # 親コメントを取得
-    changecomment.update(replies_count:changecomment.replies_count + 1)   # 親コメントのコメント数を1増やす
-  end
+    def change_parentcomment
+      changecomment = Comment.find(params[:comment][:parent_id])    # 親コメントを取得
+      changecomment.update(replies_count:changecomment.replies_count + 1)   # 親コメントのコメント数を1増やす
+    end
 
-  def delete_commenthave(comment)
-    parent = comment.parent                                       # 親コメントを代入
-    parent.update(replies_count:parent.replies_count - 1)         # 親コメントのコメント数を1減らす
-  end
+    def delete_commenthave(comment)
+      parent = comment.parent
+      parent.update(replies_count:parent.replies_count - 1)
+    end
 
     def comment_params
       params.require(:comment).permit(:content, :parent_id, :image)

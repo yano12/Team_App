@@ -2,7 +2,7 @@
   $("#comment_<%= @comment.id %> > .comment-content > .comment-info .edit-comment-link")
     .removeAttr("href");
   $("#comment_<%= @comment.id %> > .comment-content > .comment-info")
-    .after("<%=j render('comments/form', {comment: @comment,micropost: @micropost}) %>");
+    .after("<%=j render('comments/form', {comment: @comment, micropost: @micropost}) %>");
 <% else %>
   $("#comments-widget-of-commentable-<%= @comment.id %> .comments-header")
     .after("<div class='alert alert-warning alert-dismissible fade in' role='alert'>
