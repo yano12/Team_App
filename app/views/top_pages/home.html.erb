@@ -1,6 +1,5 @@
 <% provide(:placeholder, "新しい投稿．．．") %>
 <% provide(:value, "") %>
-<% provide(:class, "") %>
 <% provide(:submit, "投稿") %>
 <% if logged_in? %>
   <div class="container">
@@ -14,14 +13,12 @@
         </section>
       </aside>
       <div class="col-md-8">
-        <section class="team_info center">
+        <section class="center">
           <h1 class="my-4">
-            <%= link_to current_team.name, current_team %>
+            <%= link_to current_team.name, current_team, class: "text-black" %>
           </h1>
         </section>
-        <div class="card mb-4">
-          <%= render 'shared/feed' %>
-        </div>
+        <%= render 'shared/feed' %>
       </div>
     </div>
   </div>
@@ -31,7 +28,7 @@
       <div class="container">
         <h1 class="masthead-heading mb-0">Team App</h1>
         <h2 class="masthead-subheading mb-0">Will Help Your Team Management</h2>
-        <%= link_to "新規登録", team_login_path, class: "btn btn-primary btn-xl rounded-pill mt-5" %>
+        <%= link_to "新規登録", team_login_path, class: "btn btn-default btn-xl rounded-pill mt-5" %>
       </div>
     </div>
     <div class="bg-circle-1 bg-circle"></div>
@@ -45,7 +42,7 @@
       <div class="row align-items-center">
         <div class="col-lg-6 col-lg-push-6">
           <div class="p-5">
-            <%= image_tag("blue0031.png", alt: "", class: "img-fluid rounded-circle") %>
+            <%= image_tag("blue0031.png", alt: "", class: "img-responsive img-circle") %>
           </div>
         </div>
         <div class="col-lg-6 col-lg-pull-6">
@@ -63,7 +60,7 @@
       <div class="row align-items-center">
         <div class="col-lg-6">
           <div class="p-5">
-            <%= image_tag("blue0031.png", alt: "", class: "img-fluid rounded-circle") %>
+            <%= image_tag("blue0031.png", alt: "", class: "img-responsive img-circle") %>
           </div>
         </div>
         <div class="col-lg-6">
@@ -81,7 +78,7 @@
       <div class="row align-items-center">
         <div class="col-lg-6 col-lg-push-6">
           <div class="p-5">
-            <%= image_tag("blue0031.png", alt: "", class: "img-fluid rounded-circle") %>
+            <%= image_tag("blue0031.png", alt: "", class: "img-responsive img-circle") %>
           </div>
         </div>
         <div class="col-lg-6 col-lg-pull-6">

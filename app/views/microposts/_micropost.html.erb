@@ -1,17 +1,15 @@
-<div class="card-body">
-  <h2 class="card-title">
-    <%= link_to micropost.player.team.name, micropost.player.team %>
-  </h2>
-  <%= image_tag micropost.picture.url class: "card-img-top" if micropost.picture? %>
-  <p class="card-text"><%= link_to micropost.content, micropost %></p>
-</div>
-<div class="card-footer text-muted">
-  Posted <%= time_ago_in_words(micropost.created_at) %> ago.
-  by <%= micropost.player.name %>
-  <% if current_player?(micropost.player) %>
-    <%= link_to "削除", micropost, method: :delete,
-                                     data: { confirm: "You sure?" } %>
-     | 
-    <%= link_to "編集", edit_micropost_path(micropost) %>
-  <% end %>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <%= image_tag micropost.picture.url class: "card-img-top" if micropost.picture? %>
+    <p><%= link_to micropost.content, micropost, class: "text-black" %></p>
+  </div>
+  <div class="panel-footer text-muted">
+    Posted <%= time_ago_in_words(micropost.created_at) %> ago.
+    by <%= micropost.player.name %>
+    <% if current_player?(micropost.player) %>
+      <%= link_to "削除", micropost, method: :delete,
+                                       data: { confirm: "You sure?" },
+                                       class: "btn btn-danger btn-sm" %>
+    <% end %>
+  </div>
 </div>

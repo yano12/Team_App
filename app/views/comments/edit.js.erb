@@ -4,7 +4,7 @@
   $("#comment_<%= @comment.id %> > .comment-content > .comment-info")
     .after("<%=j render('comments/form', {comment: @comment,micropost: @micropost}) %>");
 <% else %>
-  $("#comments-widget-of-commentable-<%= @commentable.id %> .comments-header")
+  $("#comments-widget-of-commentable-<%= @comment.id %> .comments-header")
     .after("<div class='alert alert-warning alert-dismissible fade in' role='alert'>
       <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
         <span aria-hidden='true'>&times;</span></button><%= @comment.errors.full_messages.join('') %></div>")
