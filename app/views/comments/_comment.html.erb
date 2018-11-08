@@ -1,41 +1,47 @@
-<div id="comment_<%= comment.id %>" class="comment">
-  <div class="comment-content">
-    <div class="comment-player-info">
-      <%= link_to gravatar_for(comment.player, size: 50), comment.player %>
-      <%= link_to comment.player.name, comment.player %>
-    </div>
-    <% if comment.parent_id.present? %>
-      <p class="reply-player">
-        <!-- <a href="anchor名"></a>を生成する -->
-        <%=link_to ">>#{comment.parent.player.name}さん",
-                    anchor: "comment_#{comment.parent.id }" %>
-      </p>
-    <% end %>
-    <p>
-      <%= simple_format(comment.content) %>
-    </p>
-    <div class ="comment-info">
-      <p class="comment-date">
-        <%= comment.created_at.to_s(:datetime) %>に投稿
-        <% if logged_in? %>
-          <% if current_player.id == comment.player_id %>
-            <%= link_to "編集", edit_micropost_comment_path(micropost ,comment),
-                                      class: 'edit-comment-link', remote: true %>
-            <%= link_to "削除", [micropost, comment], method: :delete,
-              class: 'delete-comment-link', data:{confirm:"Are your sure?"}, remote: true %>
-          <% else %>
-          <!-- remote: true を指定するとAjaxによって画面を切り替えれる -->
-            <%= link_to "返信", reply_micropost_comment_path(micropost, comment),
-                                    class: 'reply-comment-link', remote: true %>
+<div class="panel panel-default">
+  <div id="comment_<%= comment.id %>" class="comment">
+    <div class="comment-content">
+      <div class="comment-player-info col-md-1">
+        <%= link_to gravatar_for(comment.player, size: 40), comment.player,
+                                        class: "img-circle img-responsive" %>
+      </div>
+      <% if comment.parent_id.present? %>
+        <p class="reply-player">
+          <!-- <a href="anchor名"></a>を生成する -->
+          <%=link_to ">>#{comment.parent.player.name}さん",
+                      anchor: "comment_#{comment.parent.id }" %>
+        </p>
+      <% end %>
+      <div class="panel-body col-md-7">
+        <p>
+          <%= simple_format(comment.content) %>
+        </p>
+      </div>
+      <span class="clearfix"></span>
+      <div class ="comment-info panel-footer">
+        <p class="comment-date">
+          Commented <%= time_ago_in_words(comment.created_at) %> ago
+          by <%= link_to comment.player.name, comment.player, class: "text-black" %>
+          <% if logged_in? %>
+            <% if current_player.id == comment.player_id %>
+              <%= link_to "編集", edit_micropost_comment_path(micropost ,comment),
+                                        class: 'edit-comment-link', remote: true %>
+              <%= link_to "削除", [micropost, comment], method: :delete,
+                class: 'delete-comment-link', data:{confirm:"Are your sure?"}, remote: true %>
+            <% else %>
+            <!-- remote: true を指定するとAjaxによって画面を切り替えれる -->
+              <%= link_to "返信", reply_micropost_comment_path(micropost, comment),
+                                      class: 'reply-comment-link', remote: true %>
+            <% end %>
           <% end %>
-        <% end %>
-      </p>
+        </p>
+      </div>
     </div>
-  </div>
-  <div class="comment-reply">
-    <% if comment.replies_count.to_i > 0 %>
-      <%= render partial: 'comments/comment', locals:{micropost:micropost},
-                collection: comment.replies.includes(:player, :micropost, :parent) %>
-    <% end %>
+    <div class="comment-reply">
+      <% if comment.replies_count.to_i > 0 %>
+        <%= render partial: 'comments/comment', locals:{micropost:micropost},
+                  collection: comment.replies.includes(:player, :micropost, :parent) %>
+      <% end %>
+    </div>
   </div>
 </div>

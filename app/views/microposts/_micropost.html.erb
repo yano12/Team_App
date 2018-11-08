@@ -1,11 +1,11 @@
 <div class="panel panel-default">
   <div class="panel-body">
-    <%= image_tag micropost.picture.url class: "card-img-top" if micropost.picture? %>
+    <%= image_tag micropost.picture.url class: "img-thumbnail" if micropost.picture? %>
     <p><%= link_to micropost.content, micropost, class: "text-black" %></p>
   </div>
   <div class="panel-footer text-muted">
-    Posted <%= time_ago_in_words(micropost.created_at) %> ago.
-    by <%= micropost.player.name %>
+    Posted <%= time_ago_in_words(micropost.created_at) %> ago
+    by <%= link_to micropost.player.name, micropost.player %>
     <% if current_player?(micropost.player) %>
       <%= link_to "削除", micropost, method: :delete,
                                        data: { confirm: "You sure?" },
