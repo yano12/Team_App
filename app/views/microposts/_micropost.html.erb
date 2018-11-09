@@ -9,7 +9,7 @@
     <% if current_player?(micropost.player) %>
       <%= link_to "削除", micropost, method: :delete,
                                        data: { confirm: "You sure?" },
-                                       class: "btn btn-danger btn-sm" %>
+                                       class: "btn btn-danger btn-sm pull-right" %>
     <% end %>
   </div>
 </div>

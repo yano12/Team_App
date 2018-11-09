@@ -77,12 +77,12 @@ class CommentsController < ApplicationController
 
     def change_parentcomment
       changecomment = Comment.find(params[:comment][:parent_id])    # 親コメントを取得
-      changecomment.update(replies_count:changecomment.replies_count + 1)   # 親コメントのコメント数を1増やす
+      changecomment.update(replies_count: changecomment.replies_count + 1)   # 親コメントのコメント数を1増やす
     end
 
     def delete_commenthave(comment)
       parent = comment.parent
-      parent.update(replies_count:parent.replies_count - 1)
+      parent.update(replies_count: parent.replies_count - 1)
     end
 
     def comment_params

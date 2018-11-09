@@ -5,13 +5,6 @@
         <%= link_to gravatar_for(comment.player, size: 40), comment.player,
                                         class: "img-circle img-responsive" %>
       </div>
-      <% if comment.parent_id.present? %>
-        <p class="reply-player">
-          <!-- <a href="anchor名"></a>を生成する -->
-          <%=link_to ">>#{comment.parent.player.name}さん",
-                      anchor: "comment_#{comment.parent.id }" %>
-        </p>
-      <% end %>
       <div class="panel-body col-md-7">
         <p>
           <%= simple_format(comment.content) %>
@@ -19,22 +12,23 @@
       </div>
       <span class="clearfix"></span>
       <div class ="comment-info panel-footer">
-        <p class="comment-date">
-          Commented <%= time_ago_in_words(comment.created_at) %> ago
-          by <%= link_to comment.player.name, comment.player, class: "text-black" %>
-          <% if logged_in? %>
-            <% if current_player.id == comment.player_id %>
-              <%= link_to "編集", edit_micropost_comment_path(micropost ,comment),
-                                        class: 'edit-comment-link', remote: true %>
-              <%= link_to "削除", [micropost, comment], method: :delete,
-                class: 'delete-comment-link', data:{confirm:"Are your sure?"}, remote: true %>
-            <% else %>
-            <!-- remote: true を指定するとAjaxによって画面を切り替えれる -->
-              <%= link_to "返信", reply_micropost_comment_path(micropost, comment),
-                                      class: 'reply-comment-link', remote: true %>
-            <% end %>
+        Commented <%= time_ago_in_words(comment.created_at) %> ago
+        by <%= link_to comment.player.name, comment.player, class: "text-black" %>
+        <% if logged_in? %>
+          <% if current_player.id == comment.player_id %>
+            <%= link_to "編集", edit_micropost_comment_path(micropost ,comment),
+                              class: 'edit-comment-link btn btn-success btn-sm pull-right', 
+                              remote: true %>
+            <%= link_to "削除", [micropost, comment], method: :delete,
+                              class: 'delete-comment-link btn btn-danger btn-sm pull-right',
+                              data:{confirm:"Are your sure?"}, remote: true %>
+          <% else %>
+          <!-- remote: true を指定するとAjaxによって画面を切り替えれる -->
+            <%= link_to "返信", reply_micropost_comment_path(micropost, comment),
+                                    class: 'reply-comment-link btn btn-info btn-sm pull-right', 
+                                    remote: true %>
           <% end %>
-        </p>
+        <% end %>
       </div>
     </div>
     <div class="comment-reply">

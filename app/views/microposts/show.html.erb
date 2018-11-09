@@ -1,4 +1,4 @@
-<% provide(:title, @micropost.content) %>
+<% provide(:title, "投稿") %>
 <% provide(:placeholder, "") %>
 <% provide(:value, "#{@micropost.content}") %>
 <% provide(:submit, "投稿を編集") %>
@@ -14,7 +14,8 @@
             <section class="micropost_form">
               <%= render 'shared/micropost_form' %>
               <%= link_to "投稿を削除", @micropost, method: :delete,
-                                             data: { confirm: "You sure?" } %>
+                                             data: { confirm: "You sure?" },
+                                             class: "btn btn-danger" %>
             </section>
           <% else %>
             <div class="panel-body">
