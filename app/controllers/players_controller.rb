@@ -3,6 +3,13 @@ class PlayersController < ApplicationController
   before_action :correct_player,   only: [:edit, :update]
   #before_action :admin_player,     only: :destroy
   
+  def index
+    @feed_players = current_player.feed_player
+    #@player = Player.find(params[:id])
+    #@room_id = message_room_id(current_player, @player)
+    #@messages = Message.recent_in_room(@room_id)  #新規メッセージを最大500件取得
+  end
+  
   def show
     @player = Player.find(params[:id])
     @team = @player.team

@@ -1,0 +1,16 @@
+<% provide(:title, 'Messages') %>
+<div class="row">
+  <div class="col-md-4">
+    <ul class="players player-index">
+      <% @feed_players.each do |player| %>
+        <li class="text-white message-player">
+          <%= gravatar_for player, size: 40 %>
+          <%= player.name %><br>@ <%= player.team.name %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="col-md-8">
+    
+  </div>
+</div>

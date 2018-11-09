@@ -83,6 +83,13 @@ class Player < ApplicationRecord
     from_messages.create!(to_id: other_player.id, room_id: room_id, content: content)
   end
   
+  # フォローしたチームに所属しているプレイヤーを返す
+  def feed_player
+    following_ids = "SELECT followed_id FROM relationships
+                     WHERE follower_id = :team_id"
+    Player.where("team_id IN (#{following_ids}) OR team_id = :team_id", team_id: team_id)
+  end
+  
   private
 
     # メールアドレスをすべて小文字にする

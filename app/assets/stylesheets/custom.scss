@@ -6,6 +6,7 @@
 $gray-medium-light: #eaeaea;
 $white: #fff;
 $black: #000;
+$silver: #C0C0C0;
 $primary: #000080;
 $secondary: #0083d1;
 
@@ -434,6 +435,14 @@ span.picture {
 }
 
 /* メッセージ機能 */
+
+.player-index {
+  background: $silver;
+}
+
+.message-player {
+  margin-left: 10px;
+}
 
 section.message_box {
   padding: 10px;
