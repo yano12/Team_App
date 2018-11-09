@@ -1,11 +1,7 @@
 class CommentsController < ApplicationController
   before_action :logged_in_player, only:[:update, :create, :destroy]
-  before_action :set_comment, only: [:reply, :edit, :update, :destroy ]
-
-  def reply
-    @reply = @micropost.comments.build(parent: @comment)
-  end
-
+  before_action :set_comment, only: [:edit, :update, :destroy ]
+  
   def new
   end
 
@@ -86,6 +82,6 @@ class CommentsController < ApplicationController
     end
 
     def comment_params
-      params.require(:comment).permit(:content, :parent_id, :image)
+      params.require(:comment).permit(:content, :image)
     end
 end

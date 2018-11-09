@@ -78,7 +78,11 @@ p {
 }
 
 .text-white {
-  color: #fff;
+  color: $white;
+}
+
+.text-black {
+  color: $black;
 }
 
 .mt-5 {

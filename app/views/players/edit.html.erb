@@ -22,7 +22,7 @@
           <span>フォロー/フォロー解除を通知</span>
         <% end %>
 
-        <%= f.label :password, "パスワード" %>
+        <%= f.label :password, "パスワード(6ケタ以上)" %>
         <%= f.password_field :password, class: 'form-control' %>
 
         <%= f.label :password_confirmation, "パスワード確認" %>
@@ -34,10 +34,10 @@
         <%= f.label :position, "ポジション" %>
         <%= f.text_field :position, class: 'form-control' %>
       
-        <%= f.label :height, "身長" %>
+        <%= f.label :height, "身長(cm)" %>
         <%= f.text_field :height, class: 'form-control' %>
         
-        <%= f.label :weight, "体重" %>
+        <%= f.label :weight, "体重(kg)" %>
         <%= f.text_field :weight, class: 'form-control' %>
       
         <%= f.label :grade, "学年" %>

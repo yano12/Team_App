@@ -14,28 +14,17 @@
       <div class ="comment-info panel-footer">
         Commented <%= time_ago_in_words(comment.created_at) %> ago
         by <%= link_to comment.player.name, comment.player, class: "text-black" %>
-        <% if logged_in? %>
-          <% if current_player.id == comment.player_id %>
-            <%= link_to "編集", edit_micropost_comment_path(micropost ,comment),
-                              class: 'edit-comment-link btn btn-success btn-sm pull-right', 
-                              remote: true %>
-            <%= link_to "削除", [micropost, comment], method: :delete,
-                              class: 'delete-comment-link btn btn-danger btn-sm pull-right',
-                              data:{confirm:"Are your sure?"}, remote: true %>
-          <% else %>
-          <!-- remote: true を指定するとAjaxによって画面を切り替えれる -->
-            <%= link_to "返信", reply_micropost_comment_path(micropost, comment),
-                                    class: 'reply-comment-link btn btn-info btn-sm pull-right', 
-                                    remote: true %>
-          <% end %>
+        <% if logged_in? && current_player.id == comment.player_id %>
+            <div class="btn-group pull-right">
+              <%= link_to "編集", edit_micropost_comment_path(micropost ,comment),
+                                class: 'edit-comment-link btn btn-success btn-sm', 
+                                remote: true %>
+              <%= link_to "削除", [micropost, comment], method: :delete,
+                                class: 'delete-comment-link btn btn-danger btn-sm',
+                                data:{confirm:"Are your sure?"}, remote: true %>
+            </div>
         <% end %>
       </div>
-    </div>
-    <div class="comment-reply">
-      <% if comment.replies_count.to_i > 0 %>
-        <%= render partial: 'comments/comment', locals:{micropost:micropost},
-                  collection: comment.replies.includes(:player, :micropost, :parent) %>
-      <% end %>
     </div>
   </div>
 </div>
