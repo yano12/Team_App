@@ -5,7 +5,7 @@
   </div>
   <div class="panel-footer text-muted">
     Posted <%= time_ago_in_words(micropost.created_at) %> ago.
-    by <%= micropost.player.name %>
+    by <%= link_to micropost.player.name, micropost.player %>
     <% if current_player?(micropost.player) %>
       <%= link_to "削除", micropost, method: :delete,
                                        data: { confirm: "You sure?" },
