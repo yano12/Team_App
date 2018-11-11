@@ -25,7 +25,7 @@ class TeamsControllerTest < ActionDispatch::IntegrationTest
     assert_no_difference 'Team.count' do
       delete team_path(@not_manager.team)
     end
-    assert_redirected_to root_url
+    assert_redirected_to edit_player_path(@not_manager)
   end
   
   test "should redirect following when not logged in" do

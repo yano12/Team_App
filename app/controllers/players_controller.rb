@@ -1,13 +1,14 @@
 class PlayersController < ApplicationController
-  before_action :logged_in_player, only: [:index, :edit, :update, :destroy]
+  before_action :logged_in_player, only: [:edit, :update, :destroy]
   before_action :correct_player,   only: [:edit, :update]
   #before_action :admin_player,     only: :destroy
   
   def index
-    @feed_players = current_player.feed_player
-    #@player = Player.find(params[:id])
-    #@room_id = message_room_id(current_player, @player)
-    #@messages = Message.recent_in_room(@room_id)  #新規メッセージを最大500件取得
+    if logged_in?
+      @feed_players = current_player.feed_player.paginate(page: params[:page]).search(params[:search])
+    else
+      @feed_players = Player.all.paginate(page: params[:page])
+    end
   end
   
   def show

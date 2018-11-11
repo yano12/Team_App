@@ -1,17 +1,17 @@
 <% provide(:title, 'All teams') %>
 <div class="container">
   <h1>チーム一覧</h1>
-  <%= will_paginate %>
+  <%= will_paginate previous_label: ' &lt 前へ', next_label: '次へ &gt' %>
   
   <!--  検索拡張機能  -->
   <p>チーム検索</p>
   <%= form_tag(teams_path, method: :get) do %>
     <%= text_field_tag :search %>
-    <%= submit_tag '検索', :name => nil %>
+    <%= submit_tag 'チーム検索', :name => nil %>
   <% end %>
 
   <ul class="teams">
     <%= render @teams %>
   </ul>
-  <%= will_paginate %>
+  <%= will_paginate previous_label: ' &lt 前へ', next_label: '次へ &gt' %>
 </div>

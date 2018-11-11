@@ -1,16 +1,26 @@
-<% provide(:title, 'Messages') %>
-<div class="row">
-  <div class="col-md-4">
-    <ul class="players player-index">
-      <% @feed_players.each do |player| %>
-        <li class="text-white message-player">
-          <%= gravatar_for player, size: 40 %>
-          <%= player.name %><br>@ <%= player.team.name %>
+<% provide(:title, 'All Players') %>
+<div class="container">
+  <h1>プレイヤー一覧</h1>
+  <%= will_paginate @feed_players, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %>
+  
+  <!--  検索拡張機能  -->
+  <p>チーム検索</p>
+  <%= form_tag(players_path, method: :get) do %>
+    <%= text_field_tag :search %>
+    <%= submit_tag 'プレイヤー検索', :name => nil %>
+  <% end %>
+  
+  <ul class="players">
+    <% @feed_players.each do |player| %>
+      <div class="col-md-6">
+        <li>
+          <%= gravatar_for player, size: 50 %>
+          <%= link_to player.name, player, class: "text-black" %>
+            @<%= link_to player.team.name, player.team, class: "text-black" %>
+          <br><p><%= player.grade %>年 / <%= player.position %> /<%= player.height %>cm/<%= player.weight %>kg/ <%= player.old_school %></p>
         </li>
-      <% end %>
-    </ul>
-  </div>
-  <div class="col-md-8">
-    
-  </div>
+      </div>
+    <% end %>
+  </ul>
+  <%= will_paginate @feed_players, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %>
 </div>

@@ -26,7 +26,7 @@
       <ol class="players">
         <%= render @players %>
       </ol>
-      <%= will_paginate @players %>
+      <%= will_paginate @players, previous_label: ' &lt 前へ', next_label: '次へ &gt' %>
     <% end %>
   </div>
 </div>

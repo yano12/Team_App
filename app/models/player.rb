@@ -87,7 +87,16 @@ class Player < ApplicationRecord
   def feed_player
     following_ids = "SELECT followed_id FROM relationships
                      WHERE follower_id = :team_id"
-    Player.where("team_id IN (#{following_ids}) OR team_id = :team_id", team_id: team_id)
+    Player.where("team_id IN (#{following_ids})", team_id: team_id)
+  end
+  
+  # プレイヤーを検索する
+  def self.search(search)
+    if search
+      where(['name LIKE ?', "%#{search}%"])
+    else
+      Player.all
+    end
   end
   
   private
