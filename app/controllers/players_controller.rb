@@ -1,14 +1,21 @@
 class PlayersController < ApplicationController
-  before_action :logged_in_player, only: [:edit, :update, :destroy]
+  before_action :logged_in_player, only: [:edit, :update, :destroy, :message, :message_show]
   before_action :correct_player,   only: [:edit, :update]
   #before_action :admin_player,     only: :destroy
   
   def index
-    if logged_in?
-      @feed_players = current_player.feed_player.paginate(page: params[:page]).search(params[:search])
-    else
-      @feed_players = Player.all.paginate(page: params[:page])
-    end
+    @players = Player.all.paginate(page: params[:page])
+  end
+  
+  def message
+    @feed_players = current_player.feed_player.paginate(page: params[:page]).search(params[:search])
+  end
+  
+  def message_show 
+    @player = Player.find(params[:id])
+    @room_id = message_room_id(current_player, @player) if logged_in? #ログインしてないとcurrent_playerはnil
+    @messages = Message.recent_in_room(@room_id)  #新規メッセージを最大500件取得
+    redirect_to root_url and return unless @player.activated?
   end
   
   def show
@@ -16,8 +23,8 @@ class PlayersController < ApplicationController
     @team = @player.team
     @microposts = @player.microposts.paginate(page: params[:page])
     # メッセージ機能の変数定義
-    @room_id = message_room_id(current_player, @player) if logged_in? #ログインしてないとcurrent_playerはnil
-    @messages = Message.recent_in_room(@room_id)  #新規メッセージを最大500件取得
+    #@room_id = message_room_id(current_player, @player) if logged_in? #ログインしてないとcurrent_playerはnil
+    #@messages = Message.recent_in_room(@room_id)  #新規メッセージを最大500件取得
     redirect_to root_url and return unless @player.activated?
   end
   

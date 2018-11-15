@@ -2,16 +2,16 @@
 <div class="container">
   <div class="row">
     <aside class="col-md-4">
-      <section class="team_info">
+      <section class="player_info">
         <h1>
           <%= gravatar_for @player, size: 50 %>
           <%= @player.name %>
         </h1>
       </section>
-      <section class="player_info">
-        <h1>
-          <%= link_to @player.team.name, team_path(@player.team) %>
-        </h1>
+      <section class="team_info">
+        <h4>
+          <%= link_to "@#{@player.team.name}", team_path(@player.team), class: "text-black" %>
+        </h4>
         <p># <%= @player.number %></p>
         <p>ポジション：<%= @player.position %></p>
         <p>学年：<%= @player.grade %>年</p>
@@ -19,26 +19,6 @@
         <p>体重：<%= @player.weight %>kg</p>
         <p>出身校：<%= @player.old_school %></p>
       </section>
-      <% if !current_team?(@team) && logged_in? %>
-        <section class="message_box">
-          <!-- メッセージ一覧を表示 -->
-          <div id="messages">
-            <%= render @messages %>
-          </div>
-        </section>
-        <script type="text/javascript">
-          var height = 0;
-          $("div.message").each( function() {
-            height += ($(this).height());
-          });
-          $('section.message_box').scrollTop(height);
-        </script>
-        <!-- メッセージ送信フォームを表示 -->
-        <div class="message_form">
-         <%= render 'messages/message_form',
-           {from_player: current_player, to_player: @player, room_id: @room_id} %>
-        </div>
-      <% end %>
     </aside>
     <div class="col-md-8">
       <% if @player.microposts.any? %>

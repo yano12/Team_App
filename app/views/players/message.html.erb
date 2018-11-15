@@ -1,26 +1,26 @@
-<% provide(:title, 'All Players') %>
+<% provide(:title, 'Message') %>
 <div class="container">
   <h1>プレイヤー一覧</h1>
-  <%= will_paginate @players, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %>
+  <%= will_paginate @feed_players, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %>
   
   <!--  検索拡張機能  -->
-  <p>プレイヤー検索</p>
+  <p>メッセージを送信するプレイヤーを選択してください</p>
   <%= form_tag(players_path, method: :get) do %>
     <%= text_field_tag :search %>
     <%= submit_tag 'プレイヤー検索', :name => nil %>
   <% end %>
   
   <ul class="players">
-    <% @players.each do |player| %>
+    <% @feed_players.each do |player| %>
       <div class="col-md-6">
         <li>
           <%= gravatar_for player, size: 50 %>
-          <%= link_to player.name, player, class: "text-black" %>
-            @<%= link_to player.team.name, player.team, class: "text-black" %>
+          <%= link_to player.name, message_show_player_path(player), class: "text-black" %>
+            @<%= player.team.name %>
           <br><p><%= player.grade %>年 / <%= player.position %> /<%= player.height %>cm/<%= player.weight %>kg/ <%= player.old_school %></p>
         </li>
       </div>
     <% end %>
   </ul>
-  <%= will_paginate @players, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %>
+  <%= will_paginate @feed_players, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %>
 </div>

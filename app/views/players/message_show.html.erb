@@ -1,0 +1,43 @@
+<% provide(:title, "Player messages") %>
+<div class="container">
+  <h1>メッセージ</h1>
+  <aside class="col-md-4">
+    <section class="player_info">
+      <h1>
+        <%= link_to gravatar_for(@player, size: 50), @player %>
+        <%= link_to @player.name, @player, class: "text-black" %>
+      </h1>
+    </section>
+    <section class="team_info">
+      <h4>
+        <%= link_to "@#{@player.team.name}", team_path(@player.team), class: "text-black" %>
+      </h4>
+      <p># <%= @player.number %></p>
+      <p>ポジション：<%= @player.position %></p>
+      <p>学年：<%= @player.grade %>年</p>
+      <p>身長：<%= @player.height %>cm</p>
+      <p>体重：<%= @player.weight %>kg</p>
+      <p>出身校：<%= @player.old_school %></p>
+    </section>
+  </aside>
+  <div class="col-md-8">
+    <section class="message_box">
+      <!-- メッセージ一覧を表示 -->
+      <div id="messages">
+        <%= render @messages %>
+      </div>
+    </section>
+    <script type="text/javascript">
+      var height = 0;
+      $("div.message").each( function() {
+        height += ($(this).height());
+      });
+      $('section.message_box').scrollTop(height);
+    </script>
+    <!-- メッセージ送信フォームを表示 -->
+    <div class="message_form">
+     <%= render 'messages/message_form',
+       {from_player: current_player, to_player: @player, room_id: @room_id} %>
+    </div>
+  </div>
+</div>

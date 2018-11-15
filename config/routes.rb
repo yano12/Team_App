@@ -16,7 +16,11 @@ Rails.application.routes.draw do
     # カレンダーのイベントルート
     resources :events
   end
-  resources :players
+  resources :players do 
+    member do
+      get :message, :message_show
+    end
+  end
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :microposts do

@@ -97,6 +97,10 @@ p {
   color: $black;
 }
 
+.text-bold {
+  font-weight: bold;
+}
+
 .mt-5 {
   margin-top: 3rem !important;
 }
@@ -445,7 +449,7 @@ section.message_box {
   border: 1px solid $gray-light;
   overflow: scroll;
   #messages {
-    height: 400px;
+    height: 500px;
   }
 }
 
