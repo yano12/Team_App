@@ -18,6 +18,39 @@ class PlayersController < ApplicationController
     redirect_to root_url and return unless @player.activated?
   end
   
+  def edit_stats
+    @player = Player.find(params[:id])
+  end
+  
+  def update_stats
+    @player = Player.find(params[:id])
+    @player.game_count += 1
+    @player.play_time += params[:play_time]
+    @player.pts += params[:pts]
+    @player.three_m += params[:three_m]
+    @player.three_a += params[:three_a]
+    @player.ftm += params[:ftm]
+    @player.fta += params[:fta]
+    @player.ofr += params[:ofr]
+    @player.dfr += params[:dfr]
+    @player.assist += params[:assist]
+    @player.tover += params[:tover]
+    @player.steal += params[:steal]
+    @player.blockshot += params[:blockshot]
+    @player.foul += params[:foul]
+    
+    if logged_in?
+      if @player.save
+        flash[:success] = "スタッツを更新しました。"
+        redirect_to @player
+      else
+        render 'player_stats'
+      end
+    else
+      render login_url
+    end
+  end
+  
   def show
     @player = Player.find(params[:id])
     @team = @player.team
@@ -69,7 +102,12 @@ class PlayersController < ApplicationController
       params.require(:player).permit(:team_manager, :name, :email, :password,
                                    :password_confirmation,
                                    :number, :position, :height, :weight,
-                                   :grade, :old_school, :follow_notification)
+                                   :grade, :old_school, :follow_notification,
+                                   :game_count, :play_time, :minpg, :pts, :ppg,
+                                   :fgpg, :three_m, :three_a, :threepg,
+                                   :ftm, :fta, :ftpg, :ofr, :dfr, :tor, :rpg,
+                                   :assist, :apg, :tover, :steal, :stpg,
+                                   :blockshot, :bspg, :foul)
     end
     
     def message_room_id(first_player, second_player)

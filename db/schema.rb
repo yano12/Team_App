@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181103022130) do
+ActiveRecord::Schema.define(version: 20181116043056) do
 
   create_table "comments", force: :cascade do |t|
     t.string "content"
@@ -87,6 +87,30 @@ ActiveRecord::Schema.define(version: 20181103022130) do
     t.integer "grade"
     t.string "old_school"
     t.boolean "follow_notification", default: false
+    t.integer "game_count"
+    t.float "play_time"
+    t.float "minpg"
+    t.integer "pts"
+    t.float "ppg"
+    t.float "fgpg"
+    t.integer "three_m"
+    t.integer "three_a"
+    t.float "threepg"
+    t.integer "ftm"
+    t.integer "fta"
+    t.float "ftpg"
+    t.integer "ofr"
+    t.integer "dfr"
+    t.integer "tor"
+    t.float "rpg"
+    t.integer "assist"
+    t.float "apg"
+    t.integer "tover"
+    t.integer "steal"
+    t.float "stpg"
+    t.integer "blockshot"
+    t.float "bspg"
+    t.integer "foul"
     t.index ["email"], name: "index_players_on_email", unique: true
     t.index ["team_id", "created_at"], name: "index_players_on_team_id_and_created_at"
     t.index ["team_id"], name: "index_players_on_team_id"

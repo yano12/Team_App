@@ -3,6 +3,11 @@ class TeamsController < ApplicationController
   before_action :manager_player,    only: [:edit, :update, :destroy]
   before_action :correct_team,      only: [:edit, :update, :destroy]
   
+  def team_stats 
+    @team = Team.find(params[:id])
+    @players = @team.players
+  end
+  
   def show
     @team = Team.find(params[:id])
     @players = @team.players.where(activated: true).paginate(page: params[:page])

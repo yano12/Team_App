@@ -1,0 +1,60 @@
+<p class="table-title">STATS</p>
+<p>個人成績</p>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>G</th>
+      <th>MIN</th>
+      <th>MINPG</th>
+      <th>PTS</th>
+      <th>PPG</th>
+      <th>FG%</th>
+      <th>3FGM</th>
+      <th>3fGA</th>
+      <th>3FG%</th>
+      <th>FTM</th>
+      <th>FTA</th>
+      <th>FT%</th>
+      <th>OR</th>
+      <th>DR</th>
+      <th>TR</th>
+      <th>RPG</th>
+      <th>AS</th>
+      <th>APG</th>
+      <th>TO</th>
+      <th>ST</th>
+      <th>STPG</th>
+      <th>BS</th>
+      <th>BSPG</th>
+      <th>F</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @player.game_count %></td>
+      <td><%= @player.play_time %></td>
+      <td><%= @player.minpg %></td>
+      <td><%= @player.pts %></td>
+      <td><%= @player.ppg %></td>
+      <td><%= @player.fgpg %></td>
+      <td><%= @player.three_m %></td>
+      <td><%= @player.three_a %></td>
+      <td><%= @player.threepg %></td>
+      <td><%= @player.ftm %></td>
+      <td><%= @player.fta %></td>
+      <td><%= @player.ftpg %></td>
+      <td><%= @player.ofr %></td>
+      <td><%= @player.dfr %></td>
+      <td><%= @player.tor %></td>
+      <td><%= @player.rpg %></td>
+      <td><%= @player.assist %></td>
+      <td><%= @player.apg %></td>
+      <td><%= @player.tover %></td>
+      <td><%= @player.steal %></td>
+      <td><%= @player.stpg %></td>
+      <td><%= @player.blockshot %></td>
+      <td><%= @player.bspg %></td>
+      <td><%= @player.foul %></td>
+    </tr>
+  </tbody>
+</table>

@@ -11,14 +11,15 @@ Rails.application.routes.draw do
   # delete '/team/logout',  to: 'team_sessions#destroy'
   resources :teams do
     member do
-      get :following, :followers, :calendar
+      get :following, :followers, :calendar, :team_stats
     end
     # カレンダーのイベントルート
     resources :events
   end
   resources :players do 
     member do
-      get :message, :message_show
+      get :message, :message_show, :edit_stats
+      patch :update_stats
     end
   end
   resources :account_activations, only: [:edit]

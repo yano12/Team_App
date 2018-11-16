@@ -1,0 +1,38 @@
+<p class="table-title">AVERAGE</p>
+<p>1試合平均</p>
+<table class="table table-bordered">
+  <tbody>
+    <tr>
+      <th class="col-md-6">平均得点数</th>
+      <td class="col-md-6"><%= @player.ppg %></td>
+    </tr>
+    <tr>
+      <th class="col-md-6">平均トータルリバウンド数</th>
+      <td class="col-md-6"><%= @player.rpg %></td>
+    </tr>
+    <tr>
+      <th class="col-md-6">平均アシスト数</th>
+      <td class="col-md-6"><%= @player.apg %></td>
+    </tr>
+    <tr>
+      <th class="col-md-6">平均スティール数</th>
+      <td class="col-md-6"><%= @player.stpg %></td>
+    </tr>
+    <tr>
+      <th class="col-md-6">平均ブロック数</th>
+      <td class="col-md-6"><%= @player.bspg %></td>
+    </tr>
+    <tr>
+      <th class="col-md-6">フィールドゴール成功率</th>
+      <td class="col-md-6"><%= @player.fgpg %></td>
+    </tr>
+    <tr>
+      <th class="col-md-6">3Pシュート成功率</th>
+      <td class="col-md-6"><%= @player.threepg %></td>
+    </tr>
+    <tr>
+      <th class="col-md-6">フリースロー成功率</th>
+      <td class="col-md-6"><%= @player.ftpg %></td>
+    </tr>
+  </tbody>
+</table>
