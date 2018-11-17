@@ -3,36 +3,36 @@
 <table class="table table-bordered">
   <tbody>
     <tr>
-      <th class="col-md-6">平均得点数</th>
-      <td class="col-md-6"><%= @player.ppg %></td>
+      <th class="col-md-6" align="right">平均得点数</th>
+      <td class="col-md-6"><%= @player.ppg.round(2) %></td>
     </tr>
     <tr>
       <th class="col-md-6">平均トータルリバウンド数</th>
-      <td class="col-md-6"><%= @player.rpg %></td>
+      <td class="col-md-6"><%= @player.rpg.round(2) %></td>
     </tr>
     <tr>
       <th class="col-md-6">平均アシスト数</th>
-      <td class="col-md-6"><%= @player.apg %></td>
+      <td class="col-md-6"><%= @player.apg.round(2) %></td>
     </tr>
     <tr>
       <th class="col-md-6">平均スティール数</th>
-      <td class="col-md-6"><%= @player.stpg %></td>
+      <td class="col-md-6"><%= @player.stpg.round(2) %></td>
     </tr>
     <tr>
       <th class="col-md-6">平均ブロック数</th>
-      <td class="col-md-6"><%= @player.bspg %></td>
+      <td class="col-md-6"><%= @player.bspg.round(2) %></td>
     </tr>
     <tr>
       <th class="col-md-6">フィールドゴール成功率</th>
-      <td class="col-md-6"><%= @player.fgpg %></td>
+      <td class="col-md-6"><%= @player.fgpg.round(2) %>%</td>
     </tr>
     <tr>
       <th class="col-md-6">3Pシュート成功率</th>
-      <td class="col-md-6"><%= @player.threepg %></td>
+      <td class="col-md-6"><%= @player.threepg.round(2) %>%</td>
     </tr>
     <tr>
       <th class="col-md-6">フリースロー成功率</th>
-      <td class="col-md-6"><%= @player.ftpg %></td>
+      <td class="col-md-6"><%= @player.ftpg.round(2) %>%</td>
     </tr>
   </tbody>
 </table>

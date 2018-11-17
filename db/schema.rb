@@ -87,30 +87,32 @@ ActiveRecord::Schema.define(version: 20181116043056) do
     t.integer "grade"
     t.string "old_school"
     t.boolean "follow_notification", default: false
-    t.integer "game_count"
-    t.float "play_time"
-    t.float "minpg"
-    t.integer "pts"
-    t.float "ppg"
-    t.float "fgpg"
-    t.integer "three_m"
-    t.integer "three_a"
-    t.float "threepg"
-    t.integer "ftm"
-    t.integer "fta"
-    t.float "ftpg"
-    t.integer "ofr"
-    t.integer "dfr"
-    t.integer "tor"
-    t.float "rpg"
-    t.integer "assist"
-    t.float "apg"
-    t.integer "tover"
-    t.integer "steal"
-    t.float "stpg"
-    t.integer "blockshot"
-    t.float "bspg"
-    t.integer "foul"
+    t.integer "game_count", default: 0
+    t.integer "play_time", default: 0
+    t.float "minpg", default: 0.0
+    t.integer "pts", default: 0
+    t.float "ppg", default: 0.0
+    t.integer "fgm", default: 0
+    t.integer "fga", default: 0
+    t.float "fgpg", default: 0.0
+    t.integer "three_m", default: 0
+    t.integer "three_a", default: 0
+    t.float "threepg", default: 0.0
+    t.integer "ftm", default: 0
+    t.integer "fta", default: 0
+    t.float "ftpg", default: 0.0
+    t.integer "ofr", default: 0
+    t.integer "dfr", default: 0
+    t.integer "tor", default: 0
+    t.float "rpg", default: 0.0
+    t.integer "assist", default: 0
+    t.float "apg", default: 0.0
+    t.integer "tover", default: 0
+    t.integer "steal", default: 0
+    t.float "stpg", default: 0.0
+    t.integer "blockshot", default: 0
+    t.float "bspg", default: 0.0
+    t.integer "foul", default: 0
     t.index ["email"], name: "index_players_on_email", unique: true
     t.index ["team_id", "created_at"], name: "index_players_on_team_id_and_created_at"
     t.index ["team_id"], name: "index_players_on_team_id"

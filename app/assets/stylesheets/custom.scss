@@ -11,6 +11,7 @@ $gray: #808080;
 $dark-gray: #111111;
 $primary: #000080;
 $secondary: #0083d1;
+$dark-orange: #CC6600;
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
@@ -28,6 +29,10 @@ $secondary: #0083d1;
 }
 
 /* universal */
+
+.body-container {
+  padding-bottom: 45px;
+}
 
 body {
   @include body-font;
@@ -151,7 +156,7 @@ footer {
   a {
     color: $gray;
     &:hover {
-      color: $gray-darker;
+      color: $white;
     }
   }
   small {
@@ -237,6 +242,10 @@ header.masthead {
 }
 
 /* btn */
+
+.btn-orange {
+  background-color: $dark-orange;
+}
 
 /* 背景の色 */
 .bg-primary {
@@ -507,6 +516,8 @@ div.message_form {
 .player-position {
   font-size: 20px;
 }
+
+/* table */
 
 .player-table {
   margin-top: 100px;

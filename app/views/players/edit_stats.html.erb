@@ -1,5 +1,5 @@
 <% provide(:title, 'Player Stats') %>
-<div class="container">
+<div class="container body-container">
   <h1>スタッツ</h1>
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
@@ -7,11 +7,14 @@
       <%= form_for(@player, url: update_stats_player_path) do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
       
-        <%= f.label :play_time, "総プレイ時間" %>
-        <%= f.text_field :play_time, class: 'form-control' %>
+        <%= f.label :play_time, "プレイ時間" %>
+        <%= f.text_field :play_time, class: 'form-control', placeholder: "分単位で入力してください" %>
+      
+        <%= f.label :fgm, "フィールドゴール成功数" %>
+        <%= f.text_field :fgm, class: 'form-control' %>
         
-        <%= f.label :pts, "得点数" %>
-        <%= f.text_field :pts, class: 'form-control' %>
+        <%= f.label :fga, "フィールドゴール試投数" %>
+        <%= f.text_field :fga, class: 'form-control' %>
       
         <%= f.label :three_m, "3Pシュート成功数" %>
         <%= f.text_field :three_m, class: 'form-control' %>
@@ -46,7 +49,7 @@
         <%= f.label :foul, "ファウル" %>
         <%= f.text_field :foul, class: 'form-control' %>
       
-        <%= f.submit '変更を保存する', class: "btn btn-primary" %>
+        <%= f.submit '変更を保存する', class: "btn btn-orange text-white" %>
       <% end %>
     </div>
   </div>

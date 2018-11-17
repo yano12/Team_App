@@ -8,9 +8,11 @@
       <th>MINPG</th>
       <th>PTS</th>
       <th>PPG</th>
+      <th>FGM</th>
+      <th>FGA</th>
       <th>FG%</th>
       <th>3FGM</th>
-      <th>3fGA</th>
+      <th>3FGA</th>
       <th>3FG%</th>
       <th>FTM</th>
       <th>FTA</th>
@@ -33,27 +35,29 @@
     <tr>
       <td><%= @player.game_count %></td>
       <td><%= @player.play_time %></td>
-      <td><%= @player.minpg %></td>
+      <td><%= @player.minpg.round(1) %></td>
       <td><%= @player.pts %></td>
-      <td><%= @player.ppg %></td>
-      <td><%= @player.fgpg %></td>
+      <td><%= @player.ppg.round(1) %></td>
+      <td><%= @player.fgm %></td>
+      <td><%= @player.fga %></td>
+      <td><%= @player.fgpg.round(1) %>%</td>
       <td><%= @player.three_m %></td>
       <td><%= @player.three_a %></td>
-      <td><%= @player.threepg %></td>
+      <td><%= @player.threepg.round(1) %>%</td>
       <td><%= @player.ftm %></td>
       <td><%= @player.fta %></td>
-      <td><%= @player.ftpg %></td>
+      <td><%= @player.ftpg.round(1) %>%</td>
       <td><%= @player.ofr %></td>
       <td><%= @player.dfr %></td>
       <td><%= @player.tor %></td>
-      <td><%= @player.rpg %></td>
+      <td><%= @player.rpg.round(2) %></td>
       <td><%= @player.assist %></td>
-      <td><%= @player.apg %></td>
+      <td><%= @player.apg.round(2) %></td>
       <td><%= @player.tover %></td>
       <td><%= @player.steal %></td>
-      <td><%= @player.stpg %></td>
+      <td><%= @player.stpg.round(2) %></td>
       <td><%= @player.blockshot %></td>
-      <td><%= @player.bspg %></td>
+      <td><%= @player.bspg.round(2) %></td>
       <td><%= @player.foul %></td>
     </tr>
   </tbody>
