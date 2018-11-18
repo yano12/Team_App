@@ -1,26 +1,32 @@
 <% provide(:title, 'All Players') %>
-<div class="container">
-  <h1>プレイヤー一覧</h1>
-  <%= will_paginate @players, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %>
+<div class="player-background text-white">
+  <div class="title-bar">
+    <h1>Players</h1>
+  </div>
+  <div class="container body-container">
+    <%= will_paginate @players, previous_label: ' &lt 前へ', next_label: '次へ &gt' %>
   
-  <!--  検索拡張機能  -->
-  <p>プレイヤー検索</p>
-  <%= form_tag(players_path, method: :get) do %>
-    <%= text_field_tag :search %>
-    <%= submit_tag 'プレイヤー検索', :name => nil %>
-  <% end %>
-  
-  <ul class="players">
-    <% @players.each do |player| %>
-      <div class="col-md-6">
-        <li>
-          <%= gravatar_for player, size: 50 %>
-          <%= link_to player.name, player, class: "text-black" %>
-            @<%= link_to player.team.name, player.team, class: "text-black" %>
-          <br><p><%= player.grade %>年 / <%= player.position %> /<%= player.height %>cm/<%= player.weight %>kg/ <%= player.old_school %></p>
-        </li>
-      </div>
+    <!--  検索拡張機能  -->
+    <p>プレイヤー検索</p>
+    <%= form_tag(players_path, method: :get) do %>
+      <%= text_field_tag :search %>
+      <%= submit_tag 'プレイヤー検索', name: nil, class: "btn btn-orange" %>
     <% end %>
-  </ul>
-  <%= will_paginate @players, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %>
+    
+    <ul class="players">
+      <div class="row flex">
+        <% @players.each do |player| %>
+          <div class="col-md-6">
+            <li class="player-index">
+              <%= gravatar_for player, size: 50 %>
+              <%= link_to player.name, player, class: "hover-white" %>
+                @<%= link_to player.team.name, player.team, class: "hover-white" %>
+              <br><p><%= player.grade %>年 / <%= player.position %> /<%= player.height %>cm/<%= player.weight %>kg/ <%= player.old_school %></p>
+            </li>
+          </div>
+        <% end %>
+      </div>
+    </ul>
+    <%= will_paginate @players, previous_label: ' &lt 前へ', next_label: '次へ &gt' %>
+  </div>
 </div>

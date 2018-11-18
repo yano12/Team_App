@@ -1,4 +1,10 @@
-<li id="team-<%= team.id %>">
-  <%= link_to gravatar_for(team, size: 50), team %>
-  <span class="name"><%= link_to team.name, team %></span>
-</li>
+<div class="col-lg-3 col-sm-4 text-center mb-4">
+  <li id="team-<%= team.id %>">
+    <div class="thumnail">
+      <%= link_to gravatar_for(team, size: 150), team %>
+    </div>
+    <div class="caption">
+      <p class="name"><%= link_to team.name, team, class:"hover-white" %></p>
+    </div>
+  </li>
+</div>
