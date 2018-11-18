@@ -1,0 +1,25 @@
+<p class="table-title p-center">#<%= @player.number %> <%= @player.name %></p>
+<table class="table table-bordered">
+  <tbody>
+    <tr>
+      <th class="col-md-6">ポジション</th>
+      <td class="col-md-6"><%= @player.position %></td>
+    </tr>
+    <tr>
+      <th class="col-md-6">学年</th>
+      <td class="col-md-6"><%= @player.grade %>年</td>
+    </tr>
+    <tr>
+      <th class="col-md-6">身長</th>
+      <td class="col-md-6"><%= @player.height %>cm</td>
+    </tr>
+    <tr>
+      <th class="col-md-6">体重</th>
+      <td class="col-md-6"><%= @player.weight %>kg</td>
+    </tr>
+    <tr>
+      <th class="col-md-6">出身校</th>
+      <td class="col-md-6"><%= @player.old_school %></td>
+    </tr>
+  </tbody>
+</table>

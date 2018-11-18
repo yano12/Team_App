@@ -506,6 +506,7 @@ span.picture {
 section.message_box {
   padding: 10px;
   border: 1px solid $gray-light;
+  background-color: #222222;
   overflow: scroll;
   #messages {
     height: 500px;
