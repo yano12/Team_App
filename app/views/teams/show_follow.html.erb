@@ -1,31 +1,18 @@
 <% provide(:title, @title) %>
-<div class="container">
-  <div class="row">
-    <aside class="col-md-4">
-      <section class="team_info">
-        <%= gravatar_for @team %>
-        <h1><%= @team.name %></h1>
-        <span><%= link_to "view my profile", @team %></span>
-      </section>
-      <section class="stats">
-        <%= render 'shared/stats' %>
-        <% if @teams.any? %>
-          <div class="team_avatars">
-            <% @teams.each do |team| %>
-              <%= link_to gravatar_for(team, size: 30), team %>
-            <% end %>
-          </div>
-        <% end %>
-      </section>
-    </aside>
-    <div class="col-md-8">
-      <h3><%= @title %></h3>
-      <% if @teams.any? %>
+<div class="player-background text-white">
+  <div class="title-bar">
+    <h1><%= link_to @team.name, @team, class:"hover-white" %></h1>
+  </div>
+  <div class="container body-container">
+    <h3><%= @title %></h3>
+    <% if @teams.any? %>
+      <%= will_paginate previous_label: ' &lt 前へ', next_label: '次へ &gt' %>
+      <div class="row flex">
         <ul class="teams follow">
           <%= render @teams %>
         </ul>
-        <%= will_paginate %>
-      <% end %>
-    </div>
+      </div>
+      <%= will_paginate previous_label: ' &lt 前へ', next_label: '次へ &gt' %>
+    <% end %>
   </div>
 </div>

@@ -12,6 +12,7 @@ $dark-gray: #111111;
 $primary: #000080;
 $secondary: #0083d1;
 $dark-orange: #CC6600;
+$light-orange: #FFDBC9;
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
@@ -134,7 +135,13 @@ p {
   &:hover {
     color: darken($white, 20%);
   }
-  
+}
+
+.hover-black {
+  color: $black;
+  &:hover {
+    color: lighten($black, 40%);
+  }
 }
 
 /* flash */
@@ -277,6 +284,15 @@ header.masthead {
   }
 }
 
+.btn-light-orange {
+  background-color: $light-orange;
+  color: $black;
+  &:hover {
+    background-color: darken($light-orange, 5%);
+    color: lighten($black, 5%);
+  }
+}
+
 /* 背景の色 */
 .bg-primary {
   background-color: $primary !important;
@@ -364,7 +380,6 @@ aside {
 }
 
 .stats {
-  overflow: auto;
   margin-top: 0;
   padding: 0;
   a {
@@ -378,7 +393,7 @@ aside {
     }
     &:hover {
       text-decoration: none;
-      color: blue;
+      color: $white;
     }
   }
   strong {

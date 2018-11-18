@@ -1,10 +1,10 @@
 <div class="col-lg-3 col-sm-4 text-center mb-4">
   <li id="team-<%= team.id %>">
-    <div class="thumnail">
+    <div class="thumbnail">
       <%= link_to gravatar_for(team, size: 150), team %>
-    </div>
-    <div class="caption">
-      <p class="name"><%= link_to team.name, team, class:"hover-white" %></p>
+      <div class="caption">
+        <p class="name"><%= link_to team.name, team, class:"hover-black" %></p>
+      </div>
     </div>
   </li>
 </div>
