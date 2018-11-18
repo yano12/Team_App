@@ -31,6 +31,7 @@ $dark-orange: #CC6600;
 /* universal */
 
 .body-container {
+  padding-top: 45px;
   padding-bottom: 45px;
 }
 
@@ -116,6 +117,25 @@ p {
   margin-bottom: 0 !important;
 }
 
+/* float */
+
+.f-right {
+  float: right;
+}
+
+.f-left {
+  float: left;
+}
+
+/* link_to, aタグ */
+
+.hover-white {
+  color: $white;
+  &:hover {
+    color: darken($white, 20%);
+  }
+  
+}
 
 /* ヘッダー */
 
@@ -245,6 +265,10 @@ header.masthead {
 
 .btn-orange {
   background-color: $dark-orange;
+  &:hover {
+    background-color: lighten($dark-orange, 5%);
+    color: darken($white, 5%);
+  }
 }
 
 /* 背景の色 */
@@ -491,7 +515,7 @@ div.message_form {
 .player-gravtar {
 }
 
-.team-name {
+.title-bar {
   background-color: $dark-gray;
   padding: 30px 0;
   h1 {
@@ -502,7 +526,7 @@ div.message_form {
 .player-background {
   background-color: $black;
   margin: 0 auto;
-  h1, p {
+  h1, .p-center {
     text-align: center;
   }
 }

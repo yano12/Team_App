@@ -1,5 +1,5 @@
 <% provide(:title, @player.name) %>
-<div class="team-name">
+<div class="title-bar">
   <h1>
     <%= link_to @player.team.name, team_path(@player.team), class: "text-white" %>
   </h1>
@@ -13,7 +13,7 @@
       
       <p class="player-number"><%= @player.number %></p>
       <h1><%= @player.name %></h1>
-      <p class="player-position">ポジション/<%= @player.position %></p>
+      <p class="player-position p-center">ポジション/<%= @player.position %></p>
         
       <div class="player-profile player-table">
         <%= render 'profile' %>

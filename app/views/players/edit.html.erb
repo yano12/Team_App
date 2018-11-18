@@ -1,59 +1,66 @@
 <% provide(:title, 'Edit player') %>
-<div class="container">
-  <h1>プロフィール設定</h1>
-  <div class="row">
-    <div class="col-md-6 col-md-offset-3">
-      <%= form_for(@player, url: player_path) do |f| %>
-        <%= render 'shared/error_messages', object: f.object %>
+<div class="player-background text-white">
+  <div class="title-bar">
+    <h1>プロフィール設定</h1>
+  </div>
+  <div class="container body-container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <%= form_for(@player, url: player_path) do |f| %>
+          <%= render 'shared/error_messages', object: f.object %>
         
-        <%= f.label :team_manager, class: "checkbox inline" do %>
-          <%= f.check_box :team_manager %>
-          <span>チーム管理者</span>
+          <%= f.label :team_manager, class: "checkbox inline" do %>
+            <%= f.check_box :team_manager %>
+            <span>チーム管理者</span>
+          <% end %>
+          
+          <%= f.label :name, "プレイヤー名" %>
+          <%= f.text_field :name, class: 'form-control' %>
+        
+          <%= f.label :email, "メールアドレス" %>
+          <%= f.email_field :email, class: 'form-control' %>
+          
+          <%= f.label :follow_notification, class:"checkbox inline" do %>
+            <%= f.check_box :follow_notification %>
+            <span>フォロー/フォロー解除を通知</span>
+          <% end %>
+  
+          <%= f.label :password, "パスワード" %>
+          <%= f.password_field :password, class: 'form-control' %>
+  
+          <%= f.label :password_confirmation, "パスワード確認" %>
+          <%= f.password_field :password_confirmation, class: 'form-control' %>
+      
+          <%= f.label :number, "背番号" %>
+          <%= f.text_field :number, class: 'form-control' %>
+        
+          <%= f.label :position, "ポジション" %>
+          <%= f.text_field :position, class: 'form-control' %>
+      
+          <%= f.label :height, "身長" %>
+          <%= f.text_field :height, class: 'form-control' %>
+        
+          <%= f.label :weight, "体重" %>
+          <%= f.text_field :weight, class: 'form-control' %>
+      
+          <%= f.label :grade, "学年" %>
+          <%= f.number_field :grade, class: 'form-control' %>
+        
+          <%= f.label :old_school, "出身校" %>
+          <%= f.text_field :old_school, class: 'form-control' %>
+        
+          <%= f.submit '変更を保存する', class: "btn btn-orange" %>
         <% end %>
-        
-        <%= f.label :name, "プレイヤー名" %>
-        <%= f.text_field :name, class: 'form-control' %>
-        
-        <%= f.label :email, "メールアドレス" %>
-        <%= f.email_field :email, class: 'form-control' %>
-        
-        <%= f.label :follow_notification, class:"checkbox inline" do %>
-          <%= f.check_box :follow_notification %>
-          <span>フォロー/フォロー解除を通知</span>
-        <% end %>
-
-        <%= f.label :password, "パスワード" %>
-        <%= f.password_field :password, class: 'form-control' %>
-
-        <%= f.label :password_confirmation, "パスワード確認" %>
-        <%= f.password_field :password_confirmation, class: 'form-control' %>
-      
-        <%= f.label :number, "背番号" %>
-        <%= f.text_field :number, class: 'form-control' %>
-        
-        <%= f.label :position, "ポジション" %>
-        <%= f.text_field :position, class: 'form-control' %>
-      
-        <%= f.label :height, "身長" %>
-        <%= f.text_field :height, class: 'form-control' %>
-        
-        <%= f.label :weight, "体重" %>
-        <%= f.text_field :weight, class: 'form-control' %>
-      
-        <%= f.label :grade, "学年" %>
-        <%= f.number_field :grade, class: 'form-control' %>
-      
-        <%= f.label :old_school, "出身校" %>
-        <%= f.text_field :old_school, class: 'form-control' %>
-      
-        <%= f.submit '変更を保存する', class: "btn btn-primary" %>
-      <% end %>
-      <div class="gravatar_edit">
-        <%= gravatar_for @player %>
-        <a href="http://gravatar.com/emails" target="_blank" rel="noopener">画像を変更</a>
+        <div class="gravatar_edit">
+          <%= gravatar_for @player %>
+          <a href="http://gravatar.com/emails" target="_blank" rel="noopener" class="hover-white">
+            <br>画像を変更
+          </a>
+        </div>
+        <%= link_to "アカウントを削除する", @player, method: :delete,
+                                      data: { confirm: "You sure?" },
+                                      class: "hover-white f-right" %>
       </div>
-      <%= link_to "アカウントを削除する", @player, method: :delete,
-                                    data: { confirm: "You sure?" } %>
     </div>
   </div>
 </div>
