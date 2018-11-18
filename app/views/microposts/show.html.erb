@@ -2,14 +2,11 @@
 <% provide(:placeholder, "") %>
 <% provide(:value, "#{@micropost.content}") %>
 <% provide(:submit, "投稿を編集") %>
-<div class="title-bar">
-  <h1>コメント</h1>
-</div>
 <div class="player-background text-white">
   <div class="container body-container">
     <div class="row">
       <aside class="col-md-4">
-        <div class="panel panel-default text-white">
+        <div class="panel panel-default text-white aside-post">
           <div class="panel-body light-black">
             <% if current_player?(@micropost.player) %>
               <section class="micropost_form">
@@ -26,8 +23,8 @@
             <% end %>
           </div>
           <div class="panel-footer dark-gray">
-            Posted <%= time_ago_in_words(@micropost.created_at) %> ago.
-            by <%= link_to @micropost.player.name, @micropost.player %>
+            Posted <%= time_ago_in_words(@micropost.created_at) %> ago
+            by <%= link_to @micropost.player.name, @micropost.player, class: "hover-white" %>
           
           </div>
         </div>

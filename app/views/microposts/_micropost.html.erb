@@ -4,7 +4,7 @@
     <p><%= link_to micropost.content, micropost, class: "hover-white" %></p>
   </div>
   <div class="panel-footer text-white dark-gray">
-    Posted <%= time_ago_in_words(micropost.created_at) %> ago.
+    Posted <%= time_ago_in_words(micropost.created_at) %> ago
     by <%= link_to micropost.player.name, micropost.player, class: "hover-white" %>
     <% if current_player?(micropost.player) %>
       <%= link_to "削除", micropost, method: :delete,
