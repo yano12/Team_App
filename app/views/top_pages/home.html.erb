@@ -2,23 +2,22 @@
 <% provide(:value, "") %>
 <% provide(:submit, "投稿") %>
 <% if logged_in? %>
-  <div class="container">
-    <div class="row">
-      <aside class="col-md-4">
-        <section class="player_info">
-          <%= render 'shared/player_info' %>
-        </section>
-        <section class="micropost_form">
-          <%= render 'shared/micropost_form' %>
-        </section>
-      </aside>
-      <div class="col-md-8">
-        <section class="center">
-          <h1 class="my-4">
-            <%= link_to current_team.name, current_team, class: "text-black" %>
-          </h1>
-        </section>
-        <%= render 'shared/feed' %>
+  <div class="title-bar">
+    <h1>
+      <%= link_to current_player.name, player_path(current_player), class: "text-white" %>
+    </h1>
+  </div>
+  <div class="player-background text-white">
+    <div class="container body-container">
+      <div class="row">
+        <aside class="col-md-4">
+          <section class="micropost_form">
+            <%= render 'shared/micropost_form' %>
+          </section>
+        </aside>
+        <div class="col-md-8">
+          <%= render 'shared/feed' %>
+        </div>
       </div>
     </div>
   </div>
