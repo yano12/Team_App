@@ -340,10 +340,6 @@ header.masthead {
 
 /* sidebar */
 
-.team-calendar {
-  text-align: center;
-}
-
 aside {
   section.team_info {
     margin-top: 20px;
@@ -582,4 +578,14 @@ th {
 
 td {
   background-color: #222222;
+}
+
+/* calendar */
+
+.team-calendar {
+  text-align: center;
+}
+
+.event-delete {
+  margin-top: 10px;
 }

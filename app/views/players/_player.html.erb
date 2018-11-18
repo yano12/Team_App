@@ -3,7 +3,7 @@
     <%= link_to gravatar_for(player, size: 150), player, class:"rounded-circle img-fluid d-block mx-auto" %>
     <div class="caption">
     <h4>#<%= player.number %> <%= link_to player.name, player, class: "hover-black" %></h4>
-    <p><%= player.grade %>年 / <%= player.position %> /<%= player.height %>cm/<%= player.weight %>kg/ <%= player.old_school %></p>
+    <p><%= player.grade %>年 / <%= player.position %> /<%= player.height %>cm/<%= player.weight %>kg<br>/ <%= player.old_school %></p>
     </div>
   </div>
 </div>
