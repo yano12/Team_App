@@ -26,7 +26,7 @@
   </div>
   <div class="comment-reply">
     <% if comment.replies_count.to_i > 0 %>
-      <%= render partial: 'comments/comment', locals:{micropost:micropost},
+      <%= render partial: 'comments/comment', locals: {micropost: micropost},
                 collection: comment.replies.includes(:player, :micropost, :parent) %>
     <% end %>
   </div>
