@@ -1,0 +1,16 @@
+<% provide(:title, "Team stats") %>
+<div class="player-background text-white">
+  <div class="title-bar">
+    <h1>STATS</h1>
+  </div>
+  <div class="container body-container">
+    <div class="row">
+      <div class="team-name">
+        <h1><%= link_to @team.name, team_path(@team), class: "hover-white" %></h1>
+      </div>
+      <% if @team.players.any? %>
+        <%= render 'stats' %>
+      <% end %>
+    </div>
+  </div>
+</div>

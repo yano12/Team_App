@@ -1,0 +1,99 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th class="stats-title hide">背番号</th>
+      <th class="stats-title hide">試合数</th>
+      <th class="stats-title hide">総プレイ時間</th>
+      <th class="stats-title hide">平均プレイ時間</th>
+      <th class="stats-title hide">得点数</th>
+      <th class="stats-title hide">平均得点数</th>
+      <th class="stats-title hide">フィールドゴール成功数</th>
+      <th class="stats-title hide">フィールドゴール試投数</th>
+      <th class="stats-title hide">フィールドゴール成功率%</th>
+      <th class="stats-title hide">3Pシュート成功数</th>
+      <th class="stats-title hide">3Pシュート試投数</th>
+      <th class="stats-title hide">3Pシュート成功率</th>
+      <th class="stats-title hide">フリースロー成功数</th>
+      <th class="stats-title hide">フリースロー試投数</th>
+      <th class="stats-title hide">フリースロー成功率</th>
+      <th class="stats-title hide">オフェンスリバウンド数</th>
+      <th class="stats-title hide">ディフェンスリバウンド数</th>
+      <th class="stats-title hide">トータルリバウンド数</th>
+      <th class="stats-title hide">平均トータルリバウンド数</th>
+      <th class="stats-title hide">アシスト数</th>
+      <th class="stats-title hide">平均アシスト数</th>
+      <th class="stats-title hide">ターンオーバー数</th>
+      <th class="stats-title hide">スティール数</th>
+      <th class="stats-title hide">平均スティール数</th>
+      <th class="stats-title hide">ブロックショット数</th>
+      <th class="stats-title hide">平均ブロックショット数</th>
+      <th class="stats-title hide">ファウル数</th>
+    </tr>
+  </thead>
+</table>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th class="initial-stats">NO</th>
+      <th class="initial-stats">G</th>
+      <th class="initial-stats">MIN</th>
+      <th class="initial-stats">MINPG</th>
+      <th class="initial-stats">PTS</th>
+      <th class="initial-stats">PPG</th>
+      <th class="initial-stats">FGM</th>
+      <th class="initial-stats">FGA</th>
+      <th class="initial-stats">FG%</th>
+      <th class="initial-stats">3FGM</th>
+      <th class="initial-stats">3FGA</th>
+      <th class="initial-stats">3FG%</th>
+      <th class="initial-stats">FTM</th>
+      <th class="initial-stats">FTA</th>
+      <th class="initial-stats">FT%</th>
+      <th class="initial-stats">OR</th>
+      <th class="initial-stats">DR</th>
+      <th class="initial-stats">TR</th>
+      <th class="initial-stats">RPG</th>
+      <th class="initial-stats">AS</th>
+      <th class="initial-stats">APG</th>
+      <th class="initial-stats">TO</th>
+      <th class="initial-stats">ST</th>
+      <th class="initial-stats">STPG</th>
+      <th class="initial-stats">BS</th>
+      <th class="initial-stats">BSPG</th>
+      <th class="initial-stats">F</th>
+    </tr>
+  </thead>
+  <% @team.players.each do |player| %>
+    <tbody>
+      <tr>
+        <td><%= link_to player.number, player, class: "hover-white" if player.number.present? %></td>
+        <td><%= player.game_count %></td>
+        <td><%= player.play_time %></td>
+        <td><%= player.minpg.round(1) %></td>
+        <td><%= player.pts %></td>
+        <td><%= player.ppg.round(1) %></td>
+        <td><%= player.fgm %></td>
+        <td><%= player.fga %></td>
+        <td><%= player.fgpg.round(1) %>%</td>
+        <td><%= player.three_m %></td>
+        <td><%= player.three_a %></td>
+        <td><%= player.threepg.round(1) %>%</td>
+        <td><%= player.ftm %></td>
+        <td><%= player.fta %></td>
+        <td><%= player.ftpg.round(1) %>%</td>
+        <td><%= player.ofr %></td>
+        <td><%= player.dfr %></td>
+        <td><%= player.tor %></td>
+        <td><%= player.rpg.round(2) %></td>
+        <td><%= player.assist %></td>
+        <td><%= player.apg.round(2) %></td>
+        <td><%= player.tover %></td>
+        <td><%= player.steal %></td>
+        <td><%= player.stpg.round(2) %></td>
+        <td><%= player.blockshot %></td>
+        <td><%= player.bspg.round(2) %></td>
+        <td><%= player.foul %></td>
+      </tr>
+    </tbody>
+  <% end %>
+</table>

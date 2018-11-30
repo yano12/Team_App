@@ -1,6 +1,6 @@
 class PlayersController < ApplicationController
-  before_action :logged_in_player, only: [:edit, :update, :destroy, :message, :message_show]
-  before_action :correct_player,   only: [:edit, :update]
+  before_action :logged_in_player, only: [:edit, :update, :destroy, :message, :message_show, :edit_stats, :update_stats]
+  before_action :correct_player,   only: [:edit, :update, :edit_stats, :update_stats]
   #before_action :admin_player,     only: :destroy
   
   def index

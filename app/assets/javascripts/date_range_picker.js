@@ -9,6 +9,6 @@ date_range_picker = function() {
       $('.start_hidden').val(start.format('YYYY-MM-DD HH:mm'));
       $('.end_hidden').val(end.format('YYYY-MM-DD HH:mm'));
     });
-  })
+  });
 };
 $(document).on('turbolinks:load', date_range_picker);

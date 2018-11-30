@@ -73,6 +73,11 @@ class TeamsController < ApplicationController
     render 'calendar/index'
   end
   
+  def team_stats
+    @team = Team.find(params[:id])
+    @players = @team.players.where(activated: true)
+  end
+  
   private
   
     def team_params
