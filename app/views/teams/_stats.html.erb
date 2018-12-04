@@ -1,66 +1,33 @@
-<table class="table">
-  <thead>
+<table style="font-size: 12px" class="table table-bordered">
+  <thead class="tip-parent">
     <tr>
-      <th class="stats-title hide">背番号</th>
-      <th class="stats-title hide">試合数</th>
-      <th class="stats-title hide">総プレイ時間</th>
-      <th class="stats-title hide">平均プレイ時間</th>
-      <th class="stats-title hide">得点数</th>
-      <th class="stats-title hide">平均得点数</th>
-      <th class="stats-title hide">フィールドゴール成功数</th>
-      <th class="stats-title hide">フィールドゴール試投数</th>
-      <th class="stats-title hide">フィールドゴール成功率%</th>
-      <th class="stats-title hide">3Pシュート成功数</th>
-      <th class="stats-title hide">3Pシュート試投数</th>
-      <th class="stats-title hide">3Pシュート成功率</th>
-      <th class="stats-title hide">フリースロー成功数</th>
-      <th class="stats-title hide">フリースロー試投数</th>
-      <th class="stats-title hide">フリースロー成功率</th>
-      <th class="stats-title hide">オフェンスリバウンド数</th>
-      <th class="stats-title hide">ディフェンスリバウンド数</th>
-      <th class="stats-title hide">トータルリバウンド数</th>
-      <th class="stats-title hide">平均トータルリバウンド数</th>
-      <th class="stats-title hide">アシスト数</th>
-      <th class="stats-title hide">平均アシスト数</th>
-      <th class="stats-title hide">ターンオーバー数</th>
-      <th class="stats-title hide">スティール数</th>
-      <th class="stats-title hide">平均スティール数</th>
-      <th class="stats-title hide">ブロックショット数</th>
-      <th class="stats-title hide">平均ブロックショット数</th>
-      <th class="stats-title hide">ファウル数</th>
-    </tr>
-  </thead>
-</table>
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th class="initial-stats">NO</th>
-      <th class="initial-stats">G</th>
-      <th class="initial-stats">MIN</th>
-      <th class="initial-stats">MINPG</th>
-      <th class="initial-stats">PTS</th>
-      <th class="initial-stats">PPG</th>
-      <th class="initial-stats">FGM</th>
-      <th class="initial-stats">FGA</th>
-      <th class="initial-stats">FG%</th>
-      <th class="initial-stats">3FGM</th>
-      <th class="initial-stats">3FGA</th>
-      <th class="initial-stats">3FG%</th>
-      <th class="initial-stats">FTM</th>
-      <th class="initial-stats">FTA</th>
-      <th class="initial-stats">FT%</th>
-      <th class="initial-stats">OR</th>
-      <th class="initial-stats">DR</th>
-      <th class="initial-stats">TR</th>
-      <th class="initial-stats">RPG</th>
-      <th class="initial-stats">AS</th>
-      <th class="initial-stats">APG</th>
-      <th class="initial-stats">TO</th>
-      <th class="initial-stats">ST</th>
-      <th class="initial-stats">STPG</th>
-      <th class="initial-stats">BS</th>
-      <th class="initial-stats">BSPG</th>
-      <th class="initial-stats">F</th>
+      <th class="initial-stats" data-tips="背番号">NO</th>
+      <th class="initial-stats" data-tips="試合数">G</th>
+      <th class="initial-stats" data-tips="総プレイ時間">MIN</th>
+      <th class="initial-stats" data-tips="平均プレイ時間">MINPG</th>
+      <th class="initial-stats" data-tips="得点数">PTS</th>
+      <th class="initial-stats" data-tips="平均得点数">PPG</th>
+      <th class="initial-stats" data-tips="フィールドゴール成功数">FGM</th>
+      <th class="initial-stats" data-tips="フィールドゴール試投数">FGA</th>
+      <th class="initial-stats" data-tips="フィールドゴール成功率">FG%</th>
+      <th class="initial-stats" data-tips="3P成功数">3FGM</th>
+      <th class="initial-stats" data-tips="3P試投数">3FGA</th>
+      <th class="initial-stats" data-tips="3P成功率">3FG%</th>
+      <th class="initial-stats" data-tips="フリースロー成功数">FTM</th>
+      <th class="initial-stats" data-tips="フリースロー試投数">FTA</th>
+      <th class="initial-stats" data-tips="フリースロー成功率">FT%</th>
+      <th class="initial-stats" data-tips="オフェンスリバウンド数">OR</th>
+      <th class="initial-stats" data-tips="ディフェンスリバウンド数">DR</th>
+      <th class="initial-stats" data-tips="トータルリバウンド数">TR</th>
+      <th class="initial-stats" data-tips="平均トータルリバウンド数">RPG</th>
+      <th class="initial-stats" data-tips="アシスト数">AS</th>
+      <th class="initial-stats" data-tips="平均アシスト数">APG</th>
+      <th class="initial-stats" data-tips="ターンオーバー数">TO</th>
+      <th class="initial-stats" data-tips="スティール数">ST</th>
+      <th class="initial-stats" data-tips="平均スティール数">STPG</th>
+      <th class="initial-stats" data-tips="ブロックショット数">BS</th>
+      <th class="initial-stats" data-tips="平均ブロックショット数">BSPG</th>
+      <th class="initial-stats" data-tips="ファウル数">F</th>
     </tr>
   </thead>
   <% @team.players.each do |player| %>
@@ -97,3 +64,32 @@
     </tbody>
   <% end %>
 </table>
+<ul class="txt-stats-anta">
+  <li><span class="txt-main">NO</span>：背番号</li>
+  <li><span class="txt-main">G</span>：試合数</li>
+  <li><span class="txt-main">MIN</span>：総プレイ時間</li>
+  <li><span class="txt-main">MINPG</span>：平均プレイ時間</li>
+  <li><span class="txt-main">PTS</span>：総得点数</li>
+  <li><span class="txt-main">PPG</span>：平均得点数</li>
+  <li><span class="txt-main">FGM</span>：フィールドゴール成功数</li>
+  <li><span class="txt-main">FGA</span>：フィールドゴール試投数</li>
+  <li><span class="txt-main">FG%</span>：フィールドゴール成功率</li>
+  <li><span class="txt-main">3FGM</span>：3Pシュート成功数</li>
+  <li><span class="txt-main">3FGA</span>：3Pシュート試投数</li>
+  <li><span class="txt-main">3FG%</span>：3Pシュート成功率</li>
+  <li><span class="txt-main">FTM</span>：フリースロー成功数</li>
+  <li><span class="txt-main">FTA</span>：フリースロー試投数</li>
+  <li><span class="txt-main">FT%</span>：フリースロー成功率</li>
+  <li><span class="txt-main">OR</span>：オフェンスリバウンド数</li>
+  <li><span class="txt-main">DR</span>：ディフェンスリバウンド数</li>
+  <li><span class="txt-main">TR</span>：トータルリバウンド数</li>
+  <li><span class="txt-main">RPG</span>：平均トータルリバウンド数</li>
+  <li><span class="txt-main">AS</span>：アシスト数</li>
+  <li><span class="txt-main">APG</span>：平均アシスト数</li>
+  <li><span class="txt-main">TO</span>：ターンオーバー数</li>
+  <li><span class="txt-main">ST</span>：スティール数</li>
+  <li><span class="txt-main">STPG</span>：平均スティール数</li>
+  <li><span class="txt-main">BS</span>：ブロック数</li>
+  <li><span class="txt-main">BSPG</span>：平均ブロック数</li>
+  <li><span class="txt-main">F</span>：ファウル数</li>
+</ul>

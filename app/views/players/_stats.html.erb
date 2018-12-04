@@ -1,38 +1,40 @@
 <p class="table-title p-center">STATS</p>
 <p class="p-center">個人成績</p>
-<table class="table table-bordered">
+<table style="font-size: 12px" class="table table-bordered">
   <thead>
     <tr>
-      <th>G</th>
-      <th>MIN</th>
-      <th>MINPG</th>
-      <th>PTS</th>
-      <th>PPG</th>
-      <th>FGM</th>
-      <th>FGA</th>
-      <th>FG%</th>
-      <th>3FGM</th>
-      <th>3FGA</th>
-      <th>3FG%</th>
-      <th>FTM</th>
-      <th>FTA</th>
-      <th>FT%</th>
-      <th>OR</th>
-      <th>DR</th>
-      <th>TR</th>
-      <th>RPG</th>
-      <th>AS</th>
-      <th>APG</th>
-      <th>TO</th>
-      <th>ST</th>
-      <th>STPG</th>
-      <th>BS</th>
-      <th>BSPG</th>
-      <th>F</th>
+      <th class="initial-stats" data-tips="背番号">NO</th>
+      <th class="initial-stats" data-tips="試合数">G</th>
+      <th class="initial-stats" data-tips="総プレイ時間">MIN</th>
+      <th class="initial-stats" data-tips="平均プレイ時間">MINPG</th>
+      <th class="initial-stats" data-tips="得点数">PTS</th>
+      <th class="initial-stats" data-tips="平均得点数">PPG</th>
+      <th class="initial-stats" data-tips="フィールドゴール成功数">FGM</th>
+      <th class="initial-stats" data-tips="フィールドゴール試投数">FGA</th>
+      <th class="initial-stats" data-tips="フィールドゴール成功率">FG%</th>
+      <th class="initial-stats" data-tips="3P成功数">3FGM</th>
+      <th class="initial-stats" data-tips="3P試投数">3FGA</th>
+      <th class="initial-stats" data-tips="3P成功率">3FG%</th>
+      <th class="initial-stats" data-tips="フリースロー成功数">FTM</th>
+      <th class="initial-stats" data-tips="フリースロー試投数">FTA</th>
+      <th class="initial-stats" data-tips="フリースロー成功率">FT%</th>
+      <th class="initial-stats" data-tips="オフェンスリバウンド数">OR</th>
+      <th class="initial-stats" data-tips="ディフェンスリバウンド数">DR</th>
+      <th class="initial-stats" data-tips="トータルリバウンド数">TR</th>
+      <th class="initial-stats" data-tips="平均トータルリバウンド数">RPG</th>
+      <th class="initial-stats" data-tips="アシスト数">AS</th>
+      <th class="initial-stats" data-tips="平均アシスト数">APG</th>
+      <th class="initial-stats" data-tips="ターンオーバー数">TO</th>
+      <th class="initial-stats" data-tips="スティール数">ST</th>
+      <th class="initial-stats" data-tips="平均スティール数">STPG</th>
+      <th class="initial-stats" data-tips="ブロックショット数">BS</th>
+      <th class="initial-stats" data-tips="平均ブロックショット数">BSPG</th>
+      <th class="initial-stats" data-tips="ファウル数">F</th>
     </tr>
   </thead>
   <tbody>
     <tr>
+      <td><%= @player.number %></td>
       <td><%= @player.game_count %></td>
       <td><%= @player.play_time %></td>
       <td><%= @player.minpg.round(1) %></td>
