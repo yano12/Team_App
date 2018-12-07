@@ -1,19 +1,18 @@
 $(document).ready(() => {
-  /*
-  $(document).on({
-      'mouseenter': function(event) {
-      var tips = $(event.currentTarget).attr('data-tips');
-      $(event.currentTarget).text(tips);
-      $(event.currentTarget).css('font-size', '8px');
-    },
-      'mouseleave': function(event) {
-      var order = $(event.currentTarget).attr('data-order');
-      $(event.currentTarget).text(order);
-      $(event.currentTarget).css('font-size', '12px');
-    }
-  }, '.initial-stats');
-  */
   
+  $('.initial-stats').on('mouseenter', (event) => {
+      var tips = $(event.currentTarget).attr('data-tips');
+      var length = $(event.currentTarget).attr('data-length');
+      $('.player-stats').children('span').text(tips);
+      //$('.player-stats').children('span').addClass('stats-absolute');
+      $('.title').css('margin-left', length);
+    });
+      $('.player-stats').on('mouseleave', (event) => {
+      $('.player-stats').children('span').empty();
+      //$('.player-stats').children('span').removeClass('stats-absolute');
+    });
+  
+  /*
   $(document).on({
       'mouseenter': function(event) {
       var tips = $(event.currentTarget).attr('data-tips');
@@ -29,5 +28,5 @@ $(document).ready(() => {
       //$(event.currentTarget).removeClass('absolute');
     }
   }, '.initial-stats');
-  
+  */
 });

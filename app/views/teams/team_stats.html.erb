@@ -3,13 +3,15 @@
   <div class="title-bar">
     <h1>STATS</h1>
   </div>
-  <div class="container body-container">
+  <div class="container-fluid body-container">
     <div class="row">
       <div class="team-name">
         <h1><%= link_to @team.name, team_path(@team), class: "hover-white" %></h1>
       </div>
       <div class="player-stats">
-        <p class="title"></p>
+        <span class="title"></span>
+      </div>
+      <div class="container">
         <% if @team.players.any? %>
           <%= render 'stats' %>
         <% end %>
