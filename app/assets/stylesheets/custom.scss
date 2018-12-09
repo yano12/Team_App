@@ -331,6 +331,10 @@ header.masthead {
 
 /* miscellaneous */
 
+.hide {
+  display: none;
+}
+
 .debug_dump {
   clear: both;
   float: left;
@@ -540,15 +544,7 @@ div.message_form {
   font-size: 20px;
 }
 
-/* table */
-
-.stats-absolute {
-  position: absolute;
-}
-
-.stats-relative {
-  position: relative;
-}
+/* stats-title */
 
 .title {
   display: inline-block;
@@ -570,9 +566,7 @@ ul.txt-stats-anta li {
   margin-left: 5px;
 }
 
-.hide {
-  display: none;
-}
+/* table */
 
 .player-table {
   margin-top: 100px;
