@@ -1,7 +1,7 @@
-<table style="font-size: 12px" class="table table-bordered">
+<table style="font-size: 12px" class="table table-bordered sticky_table">
   <thead class="tip-parent">
     <tr>
-      <th class="initial-stats" data-tips="背番号" data-length="10.3%">NO</th>
+      <th class="initial-stats blank" data-tips="背番号" data-length="10.3%">NO</th>
       <th class="initial-stats" data-tips="試合数" data-length="12.5%">G</th>
       <th class="initial-stats" data-tips="総プレイ時間" data-length="13.4%">MIN</th>
       <th class="initial-stats" data-tips="平均プレイ時間" data-length="16.5%">MINPG</th>
@@ -33,7 +33,13 @@
   <% @team.players.each do |player| %>
     <tbody>
       <tr>
-        <td><%= link_to player.number, player, class: "hover-white" if player.number.present? %></td>
+        <th>
+          <% if player.number.present? %>
+            <%= link_to player.number, player, class: "hover-white" %>
+          <% else %>
+            ー
+          <% end %>
+        </th>
         <td><%= player.game_count %></td>
         <td><%= player.play_time %></td>
         <td><%= player.minpg.round(1) %></td>

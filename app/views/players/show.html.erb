@@ -24,12 +24,15 @@
       </div>
       
       <div class="player-stats player-table">
-        <%= render 'stats' %>
+        <p class="table-title p-center">STATS</p>
+        <p class="p-center">個人成績</p>
+        <div class="table-responsive">
+          <%= render 'stats' %>
+        </div>
       </div>
-      <script type="text/javascript">
-        $('th').addClass("stats-th");
-        $('td').addClass("stats-td");
-      </script>
+      <div class="stats-title">
+        <%= render 'teams/stats_anta' %>
+      </div>
     </div>
   </div>
 </div>
