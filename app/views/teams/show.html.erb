@@ -26,6 +26,24 @@
           <%= render @players %>
         </ol>
         <%= will_paginate @players, previous_label: ' &lt 前へ', next_label: '次へ &gt' %>
+        
+        <div class="player-stats player-table">
+          <p class="table-title p-center">STATS</p>
+          <%= render 'stats' %>
+          
+          <script type="text/javascript">
+            var players_count = <%= @team.players.length %>;
+            if (players_count < 10) {
+              $('.sticky_table').css('height', '25vh');
+            } else if (players_count < 15) {
+              $('.sticky_table').css('height', '50vh');
+            }
+          </script>
+          
+        </div>
+        <div class="stats-title">
+          <%= render 'stats_anta' %>
+        </div>
       <% end %>
     </div>
   </div>

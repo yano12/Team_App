@@ -14,6 +14,16 @@
       <div>
         <% if @team.players.any? %>
           <%= render 'stats' %>
+
+          <script type="text/javascript">
+            var players_count = <%= @team.players.length %>;
+            if (players_count < 10) {
+              $('.sticky_table').css('height', '25vh');
+            } else if (players_count < 15) {
+              $('.sticky_table').css('height', '50vh');
+            }
+          </script>
+          
         <% end %>
       </div>
       <div class="stats-title">
