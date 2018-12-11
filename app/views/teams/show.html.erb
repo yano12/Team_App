@@ -26,7 +26,11 @@
           <%= render @players %>
         </ol>
         <%= will_paginate @players, previous_label: ' &lt 前へ', next_label: '次へ &gt' %>
-        
+      <% end %>
+    </div>
+    
+    <div class="row">
+      <% if @team.players.any? %> 
         <div class="player-stats player-table">
           <p class="table-title p-center">STATS</p>
           <%= render 'stats' %>
